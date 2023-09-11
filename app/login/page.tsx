@@ -1,7 +1,10 @@
+"use client"
 import Link from 'next/link'
 import Messages from './messages'
 
+
 export default function Login() {
+
   return (
     <div className="flex-1 flex flex-col w-full px-8 sm:max-w-md justify-center gap-2">
      
@@ -31,6 +34,7 @@ export default function Login() {
         action="/auth/sign-in"
         method="post"
       >
+        
         <label className="text-md" htmlFor="email">
           Email
         </label>
@@ -63,4 +67,4 @@ export default function Login() {
       </form>
     </div>
   )
-}
+  }
