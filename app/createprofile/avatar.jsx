@@ -53,7 +53,7 @@ export default function Avatar({ uid, url, size, onUpload }) {
   }
 
   return (
-    <div>
+    <div className='avatar-container'>
       {avatarUrl ? (
         <Image
           width={size}
@@ -66,9 +66,9 @@ export default function Avatar({ uid, url, size, onUpload }) {
       ) : (
         <div className="avatar no-image" style={{ height: size, width: size }} />
       )}
-      <div style={{ width: size }}>
-        <label className="button primary block" htmlFor="single">
-          {uploading ? 'Uploading ...' : 'Upload'}
+      <div className="avatar-btn-div" style={{ width: size }}>
+        <label className="button primary block blue-btn" htmlFor="single">
+          {uploading ? 'Uploading ...' : 'Upload Picture'}
         </label>
         <input
           style={{

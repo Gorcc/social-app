@@ -1,0 +1,21 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,600;0,700;0,800;1,600&display=swap');
+
+
+
+body{
+    font-family: 'Poppins', sans-serif;
+}
+
+a,button{
+    font-family: inherit;
+}
+
+
+.blue-btn{
+    padding: 8px;
+    width: 50%;
+    font-weight: 600;
+    background-color: #152151;
+    border-radius: 5px;
+    color: white;
+}

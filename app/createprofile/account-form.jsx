@@ -3,6 +3,7 @@ import { useCallback, useEffect, useState } from 'react'
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
 import Link from 'next/link';
 import Avatar from "./avatar.jsx";
+import "../styles/createprofile.scss"
 
 
 
@@ -74,11 +75,27 @@ export default function AccountForm({ session }) {
 
   return (
     <div className="form-widget">
+      
+      <div className="form-left">
       <div>
+      <Avatar
+      uid={user.id}
+      url={avatar_url}
+      size={300}
+      onUpload={(url) => {
+        setAvatarUrl(url)
+        updateProfile({ fullname, avatar_url: url })
+      }}
+    />
+        
+      </div>
+      </div>
+      <div className="form-right">
+      <div className='form-element'>
         <label htmlFor="email">Email</label>
         <input id="email" type="text" value={session?.user.email} disabled />
       </div>
-      <div>
+      <div className='form-element'>
         <label htmlFor="fullName">Full Name</label>
         <input
           id="fullName"
@@ -86,38 +103,36 @@ export default function AccountForm({ session }) {
           value={fullname || ''}
           onChange={(e) => setFullname(e.target.value)}
         />
-      </div>
-      
-    
+        
      
-
-      <div>
-        <button
-          className="button primary block"
+      </div>
+      <div className='form-buttons'>
+         <button
+          className="button primary block blue-btn"
           onClick={() => updateProfile({ fullname, avatar_url })}
           disabled={loading}
         >
           {loading ? 'Loading ...' : 'Update'}
-        </button>
-      </div>
-      <Avatar
-      uid={user.id}
-      url={avatar_url}
-      size={150}
-      onUpload={(url) => {
-        setAvatarUrl(url)
-        updateProfile({ fullname, avatar_url: url })
-      }}
-    />
-      <div>
+        </button >
         <form action="/auth/signout" method="post">
-          <button className="button block" type="submit">
+          <button className="button block blue-btn" type="submit">
             Sign out
           </button>
         </form>
-        
+      
       </div>
-      <Link href="/">Back to home</Link>
+      <Link href="/">Return to Home Page</Link>
+      </div>
+    
+    
+      
+    
+     
+
+    
+      
+     
+      
 
     </div>
   )
