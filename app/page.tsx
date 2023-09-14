@@ -1,21 +1,51 @@
+
 import { createServerComponentClient } from '@supabase/auth-helpers-nextjs'
 import { cookies } from 'next/headers'
 import Link from 'next/link'
 import LogoutButton from '../components/LogoutButton'
-import SupabaseLogo from '../components/SupabaseLogo'
-import NextJsLogo from '../components/NextJsLogo'
+import Image from 'next/image'
+import { redirect } from 'next/navigation';
 
 export const dynamic = 'force-dynamic'
 
 
+
+
 export default async function Index() {
-  const supabase = createServerComponentClient({ cookies })
+  const supabase = createServerComponentClient({ cookies });
+
+   var isTrue = false;
+
+
+
+  
 
   const {
     data: { user },
-  } = await supabase.auth.getUser()
-  console.log(user);
+  } = await supabase.auth.getUser();
+ 
+ 
+  
+ 
 
+   const { data, error} = await supabase.from('user-profiles').select().eq("id", user?.id);
+      
+    
+      
+     
+      if(data?.length==0){
+        redirect("createprofile");
+      }
+      
+   console.log(data);
+   
+  
+
+  
+
+  
+
+   
   return (
     <div className="w-full flex flex-col items-center">
       <nav className="w-full flex justify-center border-b border-b-foreground/10 h-16">
@@ -25,7 +55,14 @@ export default async function Index() {
           <div>
             {user ? (
               <div className="flex items-center gap-4">
-                Hey, {user.email}!
+                Hey, {data[0].user_name}!
+                <Image width={45}
+          height={45}
+          src={"https://hdjhrldjrgswbwvseahy.supabase.co/storage/v1/object/public/avatarimages/"+data[0].avatar_url}
+          alt="Avatar"
+          className="avatar image"
+          style={{ height: 45, width: 45, borderRadius:50}}></Image>
+                
                 <LogoutButton />
               </div>
             ) : (
@@ -50,9 +87,13 @@ export default async function Index() {
            The new way of connecting people.{' '}
             <strong>Share</strong> and <strong>Socialize</strong>
           </p>
-          <div className="bg-foreground py-3 px-6 rounded-lg font-mono text-sm text-background">
-           <Link href="/login">Get started</Link>
-          </div>
+
+         
+          {!user? <div className="bg-foreground py-3 px-6 rounded-lg font-mono text-sm text-background">
+          <Link href="/login">Get started</Link>
+             
+          </div>: null}
+          
         </div>
 
         
