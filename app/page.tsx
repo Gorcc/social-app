@@ -55,10 +55,10 @@ export default async function Index() {
           <div>
             {user ? (
               <div className="flex items-center gap-4">
-                Hey, {data[0].user_name}!
+                Hey, {data?data[0].user_name: ""}!
                 <Image width={45}
           height={45}
-          src={"https://hdjhrldjrgswbwvseahy.supabase.co/storage/v1/object/public/avatarimages/"+data[0].avatar_url}
+          src={ data?"https://hdjhrldjrgswbwvseahy.supabase.co/storage/v1/object/public/avatarimages/"+data[0].avatar_url:""}
           alt="Avatar"
           className="avatar image"
           style={{ height: 45, width: 45, borderRadius:50}}></Image>
