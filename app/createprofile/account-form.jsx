@@ -14,6 +14,8 @@ export default function AccountForm({ session }) {
   
   const [loading, setLoading] = useState(true)
   const [fullname, setFullname] = useState(null)
+  const [bio, setBio] = useState(null)
+
   const [avatar_url, setAvatarUrl] = useState(null)
   const user = session?.user;
 
@@ -23,7 +25,7 @@ export default function AccountForm({ session }) {
 
       let { data, error, status } = await supabase
         .from('user-profiles')
-        .select(`user_name, avatar_url`)
+        .select(`user_name, avatar_url, user_bio`)
         .eq('id', user?.id)
         .single()
 
@@ -32,9 +34,10 @@ export default function AccountForm({ session }) {
       }
 
       if (data) {
-        setFullname(data.user_name)
+        setFullname(data.user_name);
        
-        setAvatarUrl(data.avatar_url)
+        setAvatarUrl(data.avatar_url);
+        setBio(data.user_bio);
       }
     } catch (error) {
       alert('Error loading user data!')
@@ -47,13 +50,13 @@ export default function AccountForm({ session }) {
     getProfile()
   }, [user, getProfile])
 
-  async function updateProfile({fullname, avatar_url}) {
+  async function updateProfile({fullname, avatar_url, bio}) {
     try {
       setLoading(true)
 
       const { error } = await supabase
   .from('user-profiles')
-  .upsert({ id:user?.id,user_name: fullname, avatar_url })
+  .upsert({ id:user?.id,user_name: fullname, avatar_url, user_bio:bio })
   .eq('id', user?.id)
 
 
@@ -84,7 +87,7 @@ export default function AccountForm({ session }) {
       size={300}
       onUpload={(url) => {
         setAvatarUrl(url)
-        updateProfile({ fullname, avatar_url: url })
+        updateProfile({ fullname, avatar_url:url, bio})
       }}
     />
         
@@ -103,13 +106,23 @@ export default function AccountForm({ session }) {
           value={fullname || ''}
           onChange={(e) => setFullname(e.target.value)}
         />
-        
-     
+    
+      </div>
+
+      <div className='form-element'>
+        <label htmlFor="bio">Bio</label>
+        <input
+          id="bio"
+          type="text"
+          value={bio || ''}
+          onChange={(e) => setBio(e.target.value)}
+        />
+    
       </div>
       <div className='form-buttons'>
          <button
           className="button primary block blue-btn"
-          onClick={() => updateProfile({ fullname, avatar_url })}
+          onClick={() => updateProfile({ fullname, avatar_url, bio })}
           disabled={loading}
         >
           {loading ? 'Loading ...' : 'Update'}

@@ -44,7 +44,7 @@ export default async function Index() {
   
 
   
-
+   var profileHref = data?"/profile/" + data[0].id: ""
    
   return (
     <div className="w-full flex flex-col items-center">
@@ -56,13 +56,17 @@ export default async function Index() {
             {user ? (
               <div className="flex items-center gap-4">
                 Hey, {data?data[0].user_name: ""}!
+                <Link href={profileHref}>
                 <Image width={45}
           height={45}
-          src={ data?"https://hdjhrldjrgswbwvseahy.supabase.co/storage/v1/object/public/avatarimages/"+data[0].avatar_url:""}
+          src={ data?process.env.NEXT_PUBLIC_IMG_URL!+data[0].avatar_url:""}
           alt="Avatar"
           className="avatar image"
+         
           style={{ height: 45, width: 45, borderRadius:50}}></Image>
+                </Link>
                 
+                <Link href="createprofile" className="py-2 px-4 rounded-md no-underline bg-btn-background hover:bg-btn-background-hover">Edit Profile</Link>
                 <LogoutButton />
               </div>
             ) : (
