@@ -5,6 +5,8 @@ import Link from 'next/link'
 import LogoutButton from '../components/LogoutButton'
 import Image from 'next/image'
 import { redirect } from 'next/navigation';
+import CreatePost from "@/components/CreatePostComponent"; 
+import HeaderComponent from '@/components/HeaderComponent'
 
 export const dynamic = 'force-dynamic'
 
@@ -48,39 +50,8 @@ export default async function Index() {
    
   return (
     <div className="w-full flex flex-col items-center">
-      <nav className="w-full flex justify-center border-b border-b-foreground/10 h-16">
-        <div className="w-full max-w-4xl flex justify-between items-center p-3 text-sm text-foreground">
-          <strong>Social App by Sadbois</strong>
-          <div />
-          <div>
-            {user ? (
-              <div className="flex items-center gap-4">
-                Hey, {data?data[0].user_name: ""}!
-                <Link href={profileHref}>
-                <Image width={45}
-          height={45}
-          src={ data?process.env.NEXT_PUBLIC_IMG_URL!+data[0].avatar_url:""}
-          alt="Avatar"
-          className="avatar image"
-         
-          style={{ height: 45, width: 45, borderRadius:50}}></Image>
-                </Link>
-                
-                <Link href="createprofile" className="py-2 px-4 rounded-md no-underline bg-btn-background hover:bg-btn-background-hover">Edit Profile</Link>
-                <LogoutButton />
-              </div>
-            ) : (
-              <Link
-                href="/login"
-                className="py-2 px-4 rounded-md no-underline bg-btn-background hover:bg-btn-background-hover"
-              >
-                Login
-              </Link>
-            )}
-          </div>
-        </div>
-      </nav>
-
+      <HeaderComponent></HeaderComponent>
+      <CreatePost user={user}></CreatePost>
       <div className="animate-in flex flex-col gap-14 opacity-0 max-w-4xl px-3 py-16 lg:py-24 text-foreground">
         <div className="flex flex-col items-center mb-4 lg:mb-12">
           <div className="flex gap-8 justify-center items-center">

@@ -1,5 +1,7 @@
 
 import './globals.css'
+import HeaderComponent from "@/components/HeaderComponent"
+import FooterComponent from "@/components/FooterComponent"
 
 export const metadata = {
   title: 'Create Next App',
@@ -15,6 +17,8 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <main className="min-h-screen bg-background flex flex-col items-center">
+        
+
           {children}
         </main>
       </body>
