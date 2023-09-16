@@ -55,9 +55,9 @@ export default function CreatePost({ user }) {
 
       if (error) throw error;
       location.reload() ;
-      alert("Profile updated!");
+      alert("Post has been shared!");
     } catch (error) {
-      alert("Error updating the data!");
+      alert("Error occured!");
     } finally {
       setLoading(false);
     }

@@ -8,7 +8,7 @@ import PostComponent from "@/components/PostComponent";
 import CreatePostComponent from "@/components/CreatePostComponent";
 
 export default async function ProfileComponent({ profileContent, posts, user }) {
-  var set = ["1", "2", "3"];
+  
 
   const showPost = profileContent.id == user.id;
   
