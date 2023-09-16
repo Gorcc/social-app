@@ -68,13 +68,13 @@ import {v4 as uuidv4} from 'uuid';
             
             
             
-            <label className="button primary block blue-btn" htmlFor="post-message">
+            <label className="button primary block" htmlFor="post-message">
                 Write anything..
             </label>
             <input id="post-message" value={textInput} onChange={(event)=> setTextInput(event.target.value) } ></input>
        
        
-        <label className="button primary block blue-btn" htmlFor="single">
+        <label className="button primary block" htmlFor="single">
           {uploading ? 'Uploading ...' : 'Upload Picture'}
         </label>
     
@@ -90,7 +90,7 @@ import {v4 as uuidv4} from 'uuid';
           disabled={uploading}
           
         />
-        <button disabled={loading} onClick={submitPost}>Post</button>
+        <button disabled={loading||!textInput} onClick={submitPost}>Post</button>
       
         </div>
     )

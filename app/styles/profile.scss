@@ -9,6 +9,11 @@
   display: flex;
   align-items: center;
   margin: 60px;
+  margin-bottom: 4px;
+  padding-bottom: 30px;
+  -webkit-box-shadow: 0px 5px 5px -4px rgba(0,0,0,0.75);
+  -moz-box-shadow: 0px 5px 5px -4px rgba(0,0,0,0.75);
+  box-shadow: 0px 5px 5px -4px rgba(0,0,0,0.75);
 }
 .name-follow {
   display: flex;
@@ -55,11 +60,10 @@
 
 .followers ul {
   display: flex;
-  justify-content: flex-end;
-  align-items: flex-end;
-
   width: 100%;
-margin-left: 300px;}
+  
+  
+}
 
 .followers-comp {
   display: flex;

@@ -1,5 +1,6 @@
 
 import './globals.css'
+import "./styles/base.css"
 import HeaderComponent from "@/components/HeaderComponent"
 import FooterComponent from "@/components/FooterComponent"
 
@@ -16,9 +17,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <main className="min-h-screen bg-background flex flex-col items-center">
-        
-
+      <HeaderComponent></HeaderComponent>
+        <main className="min-h-screen mt-12 bg-background flex flex-col items-center">
+          
           {children}
         </main>
       </body>
