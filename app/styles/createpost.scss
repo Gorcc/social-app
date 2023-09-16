@@ -1,0 +1,61 @@
+.create-post-container {
+  
+  border: 1px solid grey;
+  padding: 24px;
+  width: 100%;
+  
+}
+
+.create-post-container textarea {
+  width: 100%;
+  overflow-y: hidden;
+  padding: 4px;
+  border: 1px solid rgb(189, 188, 188);
+}
+
+.create-post-uploads{
+    justify-content: space-between;
+}
+
+.create-post-uploads button{
+    margin-top: 12px;
+    background-color: #1D9BF0;
+    color: white;
+    border-radius: 10%;
+    border: 1px solid transparent;
+    transition: 0.3s all ease;
+    cursor: pointer;
+
+}
+
+.create-post-uploads button:hover{
+   
+        background-color: white;
+        color: #1D9BF0;
+        border: 1px solid #1D9BF0;
+}
+
+
+
+
+.create-post-uploads path{
+    color: #1D9BF0;
+
+    
+}
+
+.create-post-uploads .info-icon{
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    transition: 0.3s all ease;
+    
+    
+}
+
+.create-post-uploads .info-icon:hover{
+    
+    transform: scale(1.1);
+}
+
+

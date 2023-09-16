@@ -5,10 +5,13 @@ import { faBuildingColumns } from "@fortawesome/free-solid-svg-icons";
 import { faTree } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import PostComponent from "@/components/PostComponent";
+import CreatePostComponent from "@/components/CreatePostComponent";
 
-export default async function ProfileComponent({ profileContent, posts }) {
+export default async function ProfileComponent({ profileContent, posts, user }) {
   var set = ["1", "2", "3"];
-  console.log(posts);
+
+  const showPost = profileContent.id == user.id;
+  
   return (
     <div className="profile-container flex flex-col items-center">
       <div className="profile-header">
@@ -94,9 +97,14 @@ export default async function ProfileComponent({ profileContent, posts }) {
 
       <hr />
 
-      <div className="posts-container  flex items-center justify-center w-2/5">
+      <div className="posts-container  flex flex-col items-center justify-center w-2/5">
+        
+        {showPost && <CreatePostComponent user={user}/>} 
+        
+      
         <div className="profile-posts  w-full flex flex-col items-center">
-          {posts.map((post) => (
+          
+          {posts.reverse().map((post) => (
             <PostComponent
               userPosted={profileContent}
               postContext={post}

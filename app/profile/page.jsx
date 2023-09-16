@@ -15,7 +15,7 @@ export default  async function Profile({targetProfile}) {
     
     const { data:posts} = await supabase.from('posts').select().eq("user_id", targetProfile);
 
-    
+    const { data: { user } } = await supabase.auth.getUser()
    
     
 
@@ -31,7 +31,7 @@ export default  async function Profile({targetProfile}) {
     return ( 
        <div>
        
-       <ProfileComponent posts={posts} profileContent={profile[0]}></ProfileComponent>
+       <ProfileComponent posts={posts} profileContent={profile[0] } user={user}></ProfileComponent>
        </div>
   )
    

@@ -49,7 +49,7 @@ export default async function Index() {
    var profileHref = data?"/profile/" + data[0].id: ""
    
   return (
-    <div className="w-full flex flex-col items-center">
+    <div className="w-full flex flex-col items-center mt-12">
       
       
       {user? <CreatePost user={user}></CreatePost>: null}
