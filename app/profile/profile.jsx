@@ -6,12 +6,15 @@ import { faTree } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import PostComponent from "@/components/PostComponent";
 import CreatePostComponent from "@/components/CreatePostComponent";
+import FollowButton from "@/components/FollowButton";
 
-export default async function ProfileComponent({ profileContent, posts, user }) {
-  
-
+export default async function ProfileComponent({
+  profileContent,
+  posts,
+  user,
+}) {
   const showPost = profileContent.id == user.id;
-  
+
   return (
     <div className="profile-container flex flex-col items-center">
       <div className="profile-header">
@@ -29,7 +32,11 @@ export default async function ProfileComponent({ profileContent, posts, user }) 
           <div className="name-bio">
             <div className="name-follow">
               <h1>{profileContent.user_name}</h1>
-              <button>Follow</button>
+              <FollowButton
+                posts={posts}
+                profileContent={profileContent}
+                user={user}
+              ></FollowButton>
             </div>
 
             <h2>{profileContent.user_bio}</h2>
@@ -98,12 +105,9 @@ export default async function ProfileComponent({ profileContent, posts, user }) 
       <hr />
 
       <div className="posts-container  flex flex-col items-center justify-center w-2/5">
-        
-        {showPost && <CreatePostComponent user={user}/>} 
-        
-      
+        {showPost && <CreatePostComponent user={user} />}
+
         <div className="profile-posts  w-full flex flex-col items-center">
-          
           {posts.reverse().map((post) => (
             <PostComponent
               userPosted={profileContent}
