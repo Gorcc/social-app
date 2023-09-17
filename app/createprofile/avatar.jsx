@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react'
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
 import Image from 'next/image'
 
-export default function Avatar({ uid, url, size, onUpload }) {
+export default function Avatar({ uid, url, size, onUpload,removeAvatar }) {
   const supabase = createClientComponentClient();
   const [avatarUrl, setAvatarUrl] = useState(null)
   const [uploading, setUploading] = useState(false)
@@ -37,7 +37,6 @@ export default function Avatar({ uid, url, size, onUpload }) {
       const file = event.target.files[0];
       const fileExt = file.name.split('.').pop();
       const filePath = uid + "/" + Math.random()+"."+fileExt;
-
       let { error: uploadError } = await supabase.storage.from('avatarimages').upload(filePath, file)
 
       if (uploadError) {
@@ -64,12 +63,21 @@ export default function Avatar({ uid, url, size, onUpload }) {
           style={{ height: size, width: size }}
         />
       ) : (
-        <div className="avatar no-image" style={{ height: size, width: size }} />
+        <Image
+        width={size}
+        height={size}
+        src={process.env.NEXT_PUBLIC_IMG_URL + "no-avatar/avatar-no-image.png"}
+        alt="Avatar"
+        className="avatar image"
+        style={{ height: size, width: size }}
+      />
       )}
       <div className="avatar-btn-div" style={{ width: size }}>
         <label className="button primary block blue-btn" htmlFor="single">
           {uploading ? 'Uploading ...' : 'Upload Picture'}
         </label>
+        <button onClick={removeAvatar} className='button primary block blue-btn'>Remove Picture</button>
+
         <input
           style={{
             visibility: 'hidden',

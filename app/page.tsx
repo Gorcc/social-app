@@ -28,17 +28,22 @@ export default async function Index() {
  
  
   
- 
-
-   const { data, error} = await supabase.from('user-profiles').select().eq("id", user?.id);
-      
+   
+  if (user) {
+    const { data, error} = await supabase.from('user-profiles').select().eq("id", user?.id);
+    
     
       
      
-      if(data?.length==0){
-        redirect("createprofile");
-      }
-      
+    if(data?.length==0){
+      redirect("createprofile");
+    }
+    
+
+  }
+  
+
+  
   
    
   
@@ -46,7 +51,7 @@ export default async function Index() {
   
 
   
-   var profileHref = data?"/profile/" + data[0].id: ""
+   
    
   return (
     <div className="w-full flex flex-col items-center mt-12">
