@@ -11,6 +11,7 @@ export default async function Profile({ targetProfile }) {
     .from("user-profiles")
     .select()
     .eq("id", targetProfile);
+    
 
   const { data: posts } = await supabase
     .from("posts")
@@ -23,7 +24,9 @@ export default async function Profile({ targetProfile }) {
 
   const {data: userProfile} = await supabase.from("user-profiles").select().eq("id",user.id);
 
-  console.log("userprofile="+userProfile);
+  const {data:followStatus} =await supabase.from("follows").select().eq("follower",user.id).eq("followed",profile[0].id)
+
+ 
   
 
   return (
@@ -32,6 +35,7 @@ export default async function Profile({ targetProfile }) {
         posts={posts}
         profileContent={profile[0]}
         user={userProfile[0]}
+        followStatus={followStatus}
       ></ProfileComponent>
       
     </div>

@@ -54,11 +54,18 @@ export default function CreatePost({ user }) {
       });
 
       if (error) throw error;
+      const { data:posts } = await supabase.from("posts").select().eq("user_id",user.id);
+        const { error:updatePostCountError } = await supabase.from("user-profiles").update({
+        post_count:posts.length
+      }).eq("id", user.id);
+
       location.reload() ;
       alert("Post has been shared!");
     } catch (error) {
       alert("Error occured!");
     } finally {
+      
+
       setLoading(false);
     }
   }
@@ -81,7 +88,7 @@ export default function CreatePost({ user }) {
         value={textInput}
         onChange={(event) => setTextInput(event.target.value)}
       >
-        {" "}
+        
       </textarea>
     <div className="create-post-uploads flex justify-between w-full">
     <label className="button primary block" htmlFor="single">

@@ -1,31 +1,71 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 
-export default function FollowButton({ profileContent, user }) {
+
+
+export default function FollowButton({ profileContent, user, followStatus }) {
     const supabase = createClientComponentClient();
     const previousFollower = profileContent.follower_count;
     const previousFollowed = user.followed_count;
-  const handleFollow = async () => {
-    console.log("clicked");
-    const {error} = await supabase.from("follows").insert({
-        follower:user.id,
-        followed:profileContent.id
+    const [isFollowed,setIsFollowed] = useState(followStatus.length);
 
-    })
-    const {} = await supabase.from("user-profiles").update({
-        follower_count: previousFollower +1
+  
+   
 
-    }).eq("id",profileContent.id)
-    
-    const {} = await supabase.from("user-profiles").update({
-        followed_count: previousFollowed +1
 
-    }).eq("id",user.id)
+    const handleFollow = async () => {
+      
 
-    
-  };
-  return <button onClick={handleFollow}>Follow</button>;
+      const {error} = await supabase.from("follows").insert({
+          follower:user.id,
+          followed:profileContent.id
+  
+      })
+
+      const {data:followerCount} = await supabase.from("follows").select().eq("followed", profileContent.id);
+      const {data:followedCount} = await supabase.from("follows").select().eq("follower", user.id);
+
+      
+
+
+      const {} = await supabase.from("user-profiles").update({
+          follower_count: followerCount.length
+  
+      }).eq("id",profileContent.id)
+      
+      const {} = await supabase.from("user-profiles").update({
+          followed_count: followedCount.length
+  
+      }).eq("id",user.id)
+
+      setIsFollowed(1);
+  
+      
+    };
+    const handleUnfollow = async () => {
+      const {error} = await supabase.from("follows").delete().eq("follower",user.id).eq("followed",profileContent.id);
+
+      const {data:followerCount} = await supabase.from("follows").select().eq("followed", profileContent.id);
+      const {data:followedCount} = await supabase.from("follows").select().eq("follower", user.id);
+
+      
+
+      const {} = await supabase.from("user-profiles").update({
+          follower_count: followerCount.length
+  
+      }).eq("id",profileContent.id)
+      
+      const {} = await supabase.from("user-profiles").update({
+          followed_count: followedCount.length
+  
+      }).eq("id",user.id)
+      setIsFollowed(0)
+  
+      
+    };
+ 
+  return <button onClick={isFollowed!=0?handleUnfollow:handleFollow}>{isFollowed!=0?"Unfollow":"Follow"}</button>;
 }

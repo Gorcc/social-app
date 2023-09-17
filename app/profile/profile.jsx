@@ -12,6 +12,7 @@ export default async function ProfileComponent({
   profileContent,
   posts,
   user,
+  followStatus
 }) {
   const showPost = profileContent.id == user.id;
 
@@ -32,11 +33,12 @@ export default async function ProfileComponent({
           <div className="name-bio">
             <div className="name-follow">
               <h1>{profileContent.user_name}</h1>
-              <FollowButton
+              {!showPost && <FollowButton
                 posts={posts}
                 profileContent={profileContent}
                 user={user}
-              ></FollowButton>
+                followStatus={followStatus}
+              ></FollowButton>}
             </div>
 
             <h2>{profileContent.user_bio}</h2>
@@ -73,7 +75,7 @@ export default async function ProfileComponent({
               <li>
                 <div className="followers-comp">
                   <p>
-                    <strong>300</strong>
+                    <strong>{profileContent.follower_count}</strong>
                   </p>
                   <hr />
                   <p>Followers</p>
@@ -82,7 +84,7 @@ export default async function ProfileComponent({
               <li>
                 <div className="followers-comp">
                   <p>
-                    <strong>300</strong>
+                    <strong>{profileContent.followed_count}</strong>
                   </p>
                   <hr />
                   <p>Following</p>
@@ -91,7 +93,7 @@ export default async function ProfileComponent({
               <li>
                 <div className="followers-comp">
                   <p>
-                    <strong>300</strong>
+                    <strong>{profileContent.post_count}</strong>
                   </p>
                   <hr />
                   <p>Posts</p>

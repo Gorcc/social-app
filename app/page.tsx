@@ -39,7 +39,7 @@ export default async function Index() {
         redirect("createprofile");
       }
       
-   console.log(data);
+  
    
   
 
