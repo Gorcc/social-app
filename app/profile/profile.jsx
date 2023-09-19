@@ -7,12 +7,13 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import PostComponent from "@/components/PostComponent";
 import CreatePostComponent from "@/components/CreatePostComponent";
 import FollowButton from "@/components/FollowButton";
+import Link from "next/link";
 
 export default async function ProfileComponent({
   profileContent,
   posts,
   user,
-  followStatus
+  followStatus,
 }) {
   const showPost = profileContent.id == user.id;
 
@@ -33,12 +34,14 @@ export default async function ProfileComponent({
           <div className="name-bio">
             <div className="name-follow">
               <h1>{profileContent.user_name}</h1>
-              {!showPost && <FollowButton
-                posts={posts}
-                profileContent={profileContent}
-                user={user}
-                followStatus={followStatus}
-              ></FollowButton>}
+              {!showPost && (
+                <FollowButton
+                  posts={posts}
+                  profileContent={profileContent}
+                  user={user}
+                  followStatus={followStatus}
+                ></FollowButton>
+              )}
             </div>
 
             <h2>{profileContent.user_bio}</h2>
@@ -73,22 +76,26 @@ export default async function ProfileComponent({
           <div className="followers">
             <ul>
               <li>
-                <div className="followers-comp">
-                  <p>
-                    <strong>{profileContent.follower_count}</strong>
-                  </p>
-                  <hr />
-                  <p>Followers</p>
-                </div>
+                <Link href={"/followers/"+profileContent.id}>
+                  <div className="followers-comp">
+                    <p>
+                      <strong>{profileContent.follower_count}</strong>
+                    </p>
+                    <hr />
+                    <p>Followers</p>
+                  </div>
+                </Link>
               </li>
               <li>
-                <div className="followers-comp">
-                  <p>
-                    <strong>{profileContent.followed_count}</strong>
-                  </p>
-                  <hr />
-                  <p>Following</p>
-                </div>
+                <Link href={"/following/"+profileContent.id}>
+                  <div className="followers-comp">
+                    <p>
+                      <strong>{profileContent.followed_count}</strong>
+                    </p>
+                    <hr />
+                    <p>Following</p>
+                  </div>
+                </Link>
               </li>
               <li>
                 <div className="followers-comp">

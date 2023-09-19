@@ -1,0 +1,17 @@
+.follow-list-div {
+    margin-top: 100px;
+}
+
+.follower {
+    display: flex;
+    flex-direction: row;
+    text-align: center;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.follow-list-div svg {
+
+    height: 24px;
+    width: 24px;
+}
