@@ -34,6 +34,7 @@ export default async function ProfileComponent({
           <div className="name-bio">
             <div className="name-follow">
               <h1>{profileContent.user_name}</h1>
+              <h2>@{profileContent.unique_name}</h2>
               {!showPost && (
                 <FollowButton
                   posts={posts}
@@ -76,7 +77,7 @@ export default async function ProfileComponent({
           <div className="followers">
             <ul>
               <li>
-                <Link href={"/followers/"+profileContent.id}>
+                <Link href={"/followers/"+profileContent.unique_name}>
                   <div className="followers-comp">
                     <p>
                       <strong>{profileContent.follower_count}</strong>
@@ -87,7 +88,7 @@ export default async function ProfileComponent({
                 </Link>
               </li>
               <li>
-                <Link href={"/following/"+profileContent.id}>
+                <Link href={"/following/"+profileContent.unique_name}>
                   <div className="followers-comp">
                     <p>
                       <strong>{profileContent.followed_count}</strong>

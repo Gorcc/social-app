@@ -10,6 +10,7 @@ export default function AccountForm({ session }) {
 
   const [loading, setLoading] = useState(true);
   const [fullname, setFullname] = useState("");
+  const [uniquename, setUniquename] = useState("");
   const [bio, setBio] = useState(null);
 
   const [avatar_url, setAvatarUrl] = useState(null);
@@ -21,7 +22,7 @@ export default function AccountForm({ session }) {
 
       let { data, error, status } = await supabase
         .from("user-profiles")
-        .select(`user_name, avatar_url, user_bio`)
+        .select(`user_name, unique_name, avatar_url, user_bio`)
         .eq("id", user?.id)
         .single();
 
@@ -31,7 +32,7 @@ export default function AccountForm({ session }) {
 
       if (data) {
         setFullname(data.user_name);
-
+        setUniquename(data.unique_name);
         setAvatarUrl(data.avatar_url);
         setBio(data.user_bio);
       }
@@ -46,43 +47,76 @@ export default function AccountForm({ session }) {
     getProfile();
   }, [user, getProfile]);
 
-  async function updateProfile({ fullname, avatar_url, bio }) {
+  async function updateProfile({ fullname, avatar_url, bio, uniquename }) {
     if (avatar_url != null) {
       try {
         setLoading(true);
 
-       
-
-        const { error } = await supabase
+        const { error, status } = await supabase
           .from("user-profiles")
           .upsert({
             id: user?.id,
             user_name: fullname,
             avatar_url,
             user_bio: bio,
+            unique_name: uniquename,
           })
           .eq("id", user?.id);
 
+        const statusCode = status;
+
         if (error) throw error;
+        location.reload();
+
         alert("Profile updated!");
       } catch (error) {
-        alert("Error updating the data!");
-        console.log(error);
-      } finally {
+
+        
+         if ( error.message =="new row for relation \"user-profiles\" violates check constraint \"user-profiles_unique_name_check\""){
+          alert("Username must be at least 4 character!");
+        }
+        else if (error.message=="duplicate key value violates unique constraint \"user-profiles_unique_name_key\""){
+          alert("Username already exists!");
+
+
+          
+        }
+       
+          else {
+            alert("Error updating the data!");
+            console.log(error);
+          }
+          
+       
+        
+       
+      }
+     
+      
+      finally {
         setLoading(false);
       }
     } else if (avatar_url == null) {
       try {
         setLoading(true);
 
-        const { error } = await supabase
+        const { error , status } = await supabase
           .from("user-profiles")
-          .upsert({ id: user?.id, user_name: fullname, user_bio: bio })
+          .upsert({
+            id: user?.id,
+            user_name: fullname,
+            user_bio: bio,
+            unique_name: uniquename,
+          })
           .eq("id", user?.id);
 
         if (error) throw error;
+        location.reload();
+
         alert("Profile updated!");
       } catch (error) {
+        if (status == 409)
+
         alert("Error updating the data!");
         console.log(error);
       } finally {
@@ -99,6 +133,12 @@ export default function AccountForm({ session }) {
     location.reload();
     alert("Avatar removed!");
   }
+ 
+  function setUniqueName(value) {
+    var loweredValue=value.toLowerCase();
+    setUniquename(loweredValue.replace(/\s/g, ""));
+    
+  }
 
   return (
     <div className="form-widget">
@@ -111,7 +151,7 @@ export default function AccountForm({ session }) {
             size={300}
             onUpload={(url) => {
               setAvatarUrl(url);
-              updateProfile({ fullname, avatar_url: url, bio });
+              updateProfile({ fullname, avatar_url: url, bio, uniquename });
             }}
           />
         </div>
@@ -120,6 +160,15 @@ export default function AccountForm({ session }) {
         <div className="form-element">
           <label htmlFor="email">Email</label>
           <input id="email" type="text" value={session?.user.email} disabled />
+        </div>
+        <div className="form-element">
+          <label htmlFor="uniqueName">Username</label>
+          <input
+            id="uniqueName"
+            type="text"
+            value={uniquename || ""}
+            onChange={(e) => setUniqueName(e.target.value)}
+          />
         </div>
         <div className="form-element">
           <label htmlFor="fullName">Full Name</label>
@@ -143,8 +192,8 @@ export default function AccountForm({ session }) {
         <div className="form-buttons">
           <button
             className="button primary block blue-btn"
-            onClick={() => updateProfile({ fullname, avatar_url, bio })}
-            disabled={loading || fullname.length == 0}
+            onClick={() => updateProfile({ fullname, avatar_url, bio, uniquename })}
+            disabled={loading || fullname.length == 0 || uniquename.length==0}
           >
             {loading ? "Loading ..." : "Update"}
           </button>
