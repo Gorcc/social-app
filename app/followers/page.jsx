@@ -10,8 +10,9 @@ export default async function Followers({ targetProfile }) {
     .from("user-profiles")
     .select("id")
     .eq("unique_name", targetProfile);
+    if (target[0]){
 
-  const { data: followerList } = await supabase
+      const { data: followerList } = await supabase
     .from("follows")
     .select("follower")
     .eq("followed", target[0].id);
@@ -34,4 +35,13 @@ export default async function Followers({ targetProfile }) {
       ></FollowListComponent>
     </div>
   );
+
+    }
+
+    else{
+      return (<h1 className="mt-96">Page doesn't exists.</h1>)
+
+    }
+
+  
 }

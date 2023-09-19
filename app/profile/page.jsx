@@ -12,10 +12,9 @@ export default async function Profile({ targetProfile }) {
     .select()
     .eq("unique_name", targetProfile);
 
-    console.log(profile[0].id);
-    
-
-  const { data: posts } = await supabase
+  
+    if(profile[0]){
+      const { data: posts } = await supabase
     .from("posts")
     .select()
     .eq("user_id", profile[0].id);
@@ -28,9 +27,6 @@ export default async function Profile({ targetProfile }) {
 
   const {data:followStatus} =await supabase.from("follows").select().eq("follower",user.id).eq("followed",profile[0].id)
 
- 
-  
-
   return (
     <div>
       <ProfileComponent
@@ -42,4 +38,19 @@ export default async function Profile({ targetProfile }) {
       
     </div>
   );
+
+    }
+
+    else {
+
+      return(<h1 className="mt-96">User doesn't exists.</h1>)
+    }
+    
+
+  
+
+ 
+  
+
+  
 }
