@@ -38,6 +38,9 @@ export default async function Index() {
     if(data?.length==0){
       redirect("createprofile");
     }
+    else {
+      redirect("home");
+    }
     
 
   }
@@ -57,7 +60,7 @@ export default async function Index() {
     <div className="w-full flex flex-col items-center mt-12">
       
       
-      {user? <CreatePost user={user}></CreatePost>: null}
+      
       <div className="animate-in flex flex-col gap-14 opacity-0 max-w-4xl px-3 py-16 lg:py-24 text-foreground">
         <div className="flex flex-col items-center mb-4 lg:mb-12">
           <h1 className="sr-only">Supabase and Next.js Starter Template</h1>

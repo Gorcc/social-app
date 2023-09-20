@@ -21,7 +21,7 @@ export default function AccountForm({ session }) {
       setLoading(true);
 
       let { data, error, status } = await supabase
-        .from("user-profiles")
+        .from("user_profiles")
         .select(`user_name, unique_name, avatar_url, user_bio`)
         .eq("id", user?.id)
         .single();
@@ -53,7 +53,7 @@ export default function AccountForm({ session }) {
         setLoading(true);
 
         const { error, status } = await supabase
-          .from("user-profiles")
+          .from("user_profiles")
           .upsert({
             id: user?.id,
             user_name: fullname,
@@ -72,10 +72,10 @@ export default function AccountForm({ session }) {
       } catch (error) {
 
         
-         if ( error.message =="new row for relation \"user-profiles\" violates check constraint \"user-profiles_unique_name_check\""){
+         if ( error.message =="new row for relation \"user_profiles\" violates check constraint \"user_profiles_unique_name_check\""){
           alert("Username must be at least 4 character!");
         }
-        else if (error.message=="duplicate key value violates unique constraint \"user-profiles_unique_name_key\""){
+        else if (error.message=="duplicate key value violates unique constraint \"user_profiles_unique_name_key\""){
           alert("Username already exists!");
 
 
@@ -101,7 +101,7 @@ export default function AccountForm({ session }) {
         setLoading(true);
 
         const { error , status } = await supabase
-          .from("user-profiles")
+          .from("user_profiles")
           .upsert({
             id: user?.id,
             user_name: fullname,
@@ -127,7 +127,7 @@ export default function AccountForm({ session }) {
 
   async function removeAvatar() {
     const { error } = await supabase
-      .from("user-profiles")
+      .from("user_profiles")
       .update({ avatar_url: "no-avatar/avatar-no-image.png" })
       .eq("id", user?.id);
     location.reload();

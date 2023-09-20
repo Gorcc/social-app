@@ -16,7 +16,7 @@ export default async function HeaderComponent() {
 
 
  const { data, error } = await supabase
-  .from("user-profiles")
+  .from("user_profiles")
   .select()
   .eq("id", user?.id);
 

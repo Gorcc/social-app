@@ -8,7 +8,7 @@ export default async function Profile({ targetProfile }) {
   const supabase = createServerComponentClient({ cookies });
 
   const { data: profile, error } = await supabase
-    .from("user-profiles")
+    .from("user_profiles")
     .select()
     .eq("unique_name", targetProfile);
 
@@ -24,7 +24,7 @@ export default async function Profile({ targetProfile }) {
     data: { user },
   } = await supabase.auth.getUser();
 
-  const {data: userProfile} = await supabase.from("user-profiles").select().eq("id",user.id);
+  const {data: userProfile} = await supabase.from("user_profiles").select().eq("id",user.id);
 
   const {data:followStatus} =await supabase.from("follows").select().eq("follower",user.id).eq("followed",profile[0].id)
 

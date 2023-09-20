@@ -55,7 +55,7 @@ export default function CreatePost({ user }) {
 
       if (error) throw error;
       const { data:posts } = await supabase.from("posts").select().eq("user_id",user.id);
-        const { error:updatePostCountError } = await supabase.from("user-profiles").update({
+        const { error:updatePostCountError } = await supabase.from("user_profiles").update({
         post_count:posts.length
       }).eq("id", user.id);
 

@@ -7,7 +7,7 @@ export default async function Followers({ targetProfile }) {
   const supabase = createServerComponentClient({ cookies });
 
   const { data: target } = await supabase
-    .from("user-profiles")
+    .from("user_profiles")
     .select("id")
     .eq("unique_name", targetProfile);
     if (target[0]){
@@ -22,7 +22,7 @@ export default async function Followers({ targetProfile }) {
   }
 
   const { data: followerInfos } = await supabase
-    .from("user-profiles")
+    .from("user_profiles")
     .select()
     .in("id", followerList);
 

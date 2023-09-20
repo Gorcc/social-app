@@ -31,12 +31,12 @@ export default function FollowButton({ profileContent, user, followStatus }) {
       
 
 
-      const {} = await supabase.from("user-profiles").update({
+      const {} = await supabase.from("user_profiles").update({
           follower_count: followerCount.length
   
       }).eq("id",profileContent.id)
       
-      const {} = await supabase.from("user-profiles").update({
+      const {} = await supabase.from("user_profiles").update({
           followed_count: followedCount.length
   
       }).eq("id",user.id)
@@ -53,12 +53,12 @@ export default function FollowButton({ profileContent, user, followStatus }) {
 
       
 
-      const {} = await supabase.from("user-profiles").update({
+      const {} = await supabase.from("user_profiles").update({
           follower_count: followerCount.length
   
       }).eq("id",profileContent.id)
       
-      const {} = await supabase.from("user-profiles").update({
+      const {} = await supabase.from("user_profiles").update({
           followed_count: followedCount.length
   
       }).eq("id",user.id)
