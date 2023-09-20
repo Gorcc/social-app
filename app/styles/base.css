@@ -29,7 +29,7 @@ a,button{
     position: fixed; /* Set the navbar to fixed position */
     top: 0;
     background-color: rgb(249,250,251);
-    
+    z-index: 100;
 }
 .header-nav{
     min-width: 100%;

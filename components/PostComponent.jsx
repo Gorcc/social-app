@@ -9,14 +9,19 @@ export default function PostComponent({postContext, userPosted}) {
   var postImage = postContext.post_file;
   var userName = userPosted.user_name;
   var userAvatar = userPosted.avatar_url;
-
+  var uniqueName = userPosted.unique_name;
+  var postDate = postContext.created_at;
+ 
+  const date = new Date();
+  console.log(date);
   
 
-    return (<div className='post-container  flex flex-row w-full'>
+    return (<div className='post-container flex flex-row w-full p-12'>
          <div className='post-avatar-div'>
 
 
             <Image width={45}
+            
             height={45}
             src={ process.env.NEXT_PUBLIC_IMG_URL+userAvatar}
             alt="Avatar"
@@ -25,18 +30,27 @@ export default function PostComponent({postContext, userPosted}) {
             style={{ height: 45, width: 45, borderRadius:50}}></Image>
          </div>
          <div>
+            <div className='flex'>
             <h1 className='font-bold'>{userName}</h1>
-
+            <h1 className='text-gray-400'>@{uniqueName}</h1>
+            {/* <h2>{postDate}</h2> */}
+            </div>
+           
+            <div className='post'>
             <p>{postText}</p>
-            {postImage!=null && <Image width={600}
+            {postImage!=null && <Image
                
-               height={337}
+              
+               
                 src={ process.env.NEXT_PUBLIC_POST_URL+postImage}
                 alt="Post"
-                className="post-image border"
-                style={{ height: 337, width: 600}}>
+                className="post-image"
+                fill={true}
+               >
 
             </Image>} 
+            </div>
+           
 
             
          </div>

@@ -18,6 +18,7 @@ export default async function Profile({ targetProfile }) {
     .from("posts")
     .select()
     .eq("user_id", profile[0].id);
+   
 
   const {
     data: { user },

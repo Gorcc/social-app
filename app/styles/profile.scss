@@ -1,52 +1,63 @@
 .profile-img {
   border-radius: 50%;
-  margin-left: 120px;
-  border: 1px solid black;
+  margin-left: 5%;
+  border: 1px solid rgba(0, 0, 0, 0.144);
 }
 
 .profile-header {
   width: 100vw;
   display: flex;
   align-items: center;
-  margin: 60px;
+  margin: 5%;
   margin-bottom: 4px;
   padding-bottom: 30px;
-  -webkit-box-shadow: 0px 5px 5px -4px rgba(0,0,0,0.75);
-  -moz-box-shadow: 0px 5px 5px -4px rgba(0,0,0,0.75);
-  box-shadow: 0px 5px 5px -4px rgba(0,0,0,0.75);
+  -webkit-box-shadow: 0px 5px 5px -4px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 0px 5px 5px -4px rgba(0, 0, 0, 0.75);
+  box-shadow: 0px 5px 5px -4px rgba(0, 0, 0, 0.75);
 }
 .name-follow {
   display: flex;
   align-items: center;
-
   text-align: center;
-  width: 100%;
+  
 }
 
 .name-follow button {
   font-size: 16px;
   font-weight: 700;
-  margin-left: 28px;
   border: 1px solid;
   padding: 8px;
   z-index: 1;
+  width: 100px;
+  
+  
+}
+.follow-btn{
+  
+  margin-left: 32px;
+  
 }
 
 .name-bio {
   display: flex;
   flex-direction: column;
-  margin-left: 40px;
-  width: 100%;
-
+  margin-left: 5%;
+  
   h1 {
-    font-size: 40px;
+    font-size: 30px;
     font-weight: 700;
+    width: max-content;
+    text-align: left;
+    
+    
+    
   }
   h2 {
     font-size: 20px;
-    color: grey;
+    text-align: left;
   }
 }
+
 
 .more-info ul {
   display: flex;
@@ -54,7 +65,7 @@
 }
 
 .more-info li {
-    display: flex;
+  display: flex;
   margin-top: 8px;
   margin-right: 16px;
 }
@@ -62,8 +73,6 @@
 .followers ul {
   display: flex;
   width: 100%;
-  
-  
 }
 
 .followers-comp {
@@ -72,20 +81,19 @@
 
   margin: 0 20px;
 
-  p{
+  p {
     font-weight: 500;
+    text-align: center;
   }
 
-  strong{
+  strong {
     font-size: 32px;
     font-weight: 800;
   }
 }
 
-.info-icon{
-    
-    width: 24px;
-    height: 24px;
-    margin-right: 4px;
-    
+.info-icon {
+  width: 24px;
+  height: 24px;
+  margin-right: 4px;
 }

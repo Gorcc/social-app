@@ -7,17 +7,38 @@
     border: 1px solid rgb(201, 197, 197);
     border-top: 0;
     padding-bottom: 16px;
+    
+    width: 800px;
 }
 
 
-.post-avatar-div{
+.post-avatar-div img{
     height: 100%;
-    margin: 24px;
+    margin: 12px;
+    max-width: max-content !important;
+    border: 1px solid black;
 }
 
 
 .post-image{
-    cursor: pointer;
+    object-fit: contain;
+    width: 100% !important;
+    position: relative !important;
+    height: unset !important;
+    z-index: 1;
+    padding-right: 8px;
+   
 }
 
 
+.post{
+    width: 100%;
+  
+}
+
+@media only screen and (max-width: 1125px) {
+    .post-container{
+        width: 80%;
+        
+    }
+  }

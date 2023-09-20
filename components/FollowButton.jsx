@@ -67,5 +67,5 @@ export default function FollowButton({ profileContent, user, followStatus }) {
       
     };
  
-  return <button onClick={isFollowed!=0?handleUnfollow:handleFollow}>{isFollowed!=0?"Unfollow":"Follow"}</button>;
+  return <button  onClick={isFollowed!=0?handleUnfollow:handleFollow}>{isFollowed!=0?"Unfollow":"Follow"}</button>;
 }

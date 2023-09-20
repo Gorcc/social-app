@@ -2,16 +2,46 @@
     margin-top: 100px;
 }
 
+
 .follower {
     display: flex;
     flex-direction: row;
     text-align: center;
     align-items: center;
     justify-content: flex-start;
+    padding: 8px;
+    transition: 0.3s all ease;
+    margin-top: 12px;
+
+    h2{
+        color: gray;
+    }
 }
+
+.follower h1{
+    margin: 8px;
+    
+}
+
+.follower:hover{
+    background-color: rgba(180, 178, 178, 0.295);
+}
+
 
 .follow-list-div svg {
 
-    height: 24px;
-    width: 24px;
+    height: 32px;
+    width: 80px;
+    
+    background-color: rgba(180, 178, 178, 0.295) ;
+    
+}
+
+.follow-list-div svg:hover{
+    background-color: rgba(180, 178, 178, 0.411) ;
+}
+
+.following-text{
+    font-size: 24px;
+    margin-bottom: 12px;
 }

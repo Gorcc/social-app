@@ -7,16 +7,19 @@ import Link from "next/link";
 
 export default function FollowListComponent({targetProfile, listType, followerList }) {
   return (
-    <div className="follow-list-div">
-      <h1>{listType}</h1>
+    <div className="follow-list-div flex flex-col justify-center items-center">
+      <h1 className="font-bold following-text">{listType}</h1>
       <Link href={"/profile/"+targetProfile}>
-        <FontAwesomeIcon  icon={faArrowLeft} />
+        <FontAwesomeIcon icon={faArrowLeft} />
       </Link>
 
       <div>
         {followerList.map((follower) => (
           <Follower follower={follower}></Follower>
+         
+
         ))}
+        <hr />
       </div>
     </div>
   );

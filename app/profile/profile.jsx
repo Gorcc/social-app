@@ -19,7 +19,7 @@ export default async function ProfileComponent({
 
   return (
     <div className="profile-container flex flex-col items-center">
-      <div className="profile-header">
+      <div className="profile-header w-full">
         <div className="header-left flex items-center justify-center ml-48">
           <Image
             src={
@@ -33,19 +33,27 @@ export default async function ProfileComponent({
           ></Image>
           <div className="name-bio">
             <div className="name-follow">
+              
+              <div className="name-username">
               <h1>{profileContent.user_name}</h1>
-              <h2>@{profileContent.unique_name}</h2>
-              {!showPost && (
+              <h2 className="text-gray-400 mb-4">@{profileContent.unique_name}</h2>
+              </div>
+             
+             <div className="follow-btn">
+             {!showPost && (
                 <FollowButton
+                
                   posts={posts}
                   profileContent={profileContent}
                   user={user}
                   followStatus={followStatus}
                 ></FollowButton>
               )}
+             </div>
+              
             </div>
-
-            <h2>{profileContent.user_bio}</h2>
+           
+            <h2 className="text-black">{profileContent.user_bio}</h2>
 
             <div className="more-info">
               <ul>
@@ -73,7 +81,7 @@ export default async function ProfileComponent({
             </div>
           </div>
         </div>
-        <div className="header-right flex w-full items-center justify-end mr-48">
+        <div className="header-right flex w-1/2 justify-end items-center">
           <div className="followers">
             <ul>
               <li>
@@ -82,7 +90,7 @@ export default async function ProfileComponent({
                     <p>
                       <strong>{profileContent.follower_count}</strong>
                     </p>
-                    <hr />
+                    
                     <p>Followers</p>
                   </div>
                 </Link>
@@ -93,7 +101,7 @@ export default async function ProfileComponent({
                     <p>
                       <strong>{profileContent.followed_count}</strong>
                     </p>
-                    <hr />
+                    
                     <p>Following</p>
                   </div>
                 </Link>
@@ -103,7 +111,7 @@ export default async function ProfileComponent({
                   <p>
                     <strong>{profileContent.post_count}</strong>
                   </p>
-                  <hr />
+                  
                   <p>Posts</p>
                 </div>
               </li>
@@ -114,7 +122,7 @@ export default async function ProfileComponent({
 
       <hr />
 
-      <div className="posts-container  flex flex-col items-center justify-center w-2/5">
+      <div className="posts-container flex flex-col items-center justify-center">
         {showPost && <CreatePostComponent user={user} />}
 
         <div className="profile-posts  w-full flex flex-col items-center">
