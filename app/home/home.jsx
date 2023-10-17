@@ -14,6 +14,8 @@ export default function Home({ user,posts }) {
           <PostComponent
             userPosted={post.user_profiles}
             postContext={post}
+            user={user.id}
+           
           ></PostComponent>
         ))}
       </div>

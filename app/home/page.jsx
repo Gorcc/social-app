@@ -25,5 +25,5 @@ export default async function Index() {
 
     console.log();
 
-  return <Home posts={postList} user={user} ></Home>;
+  return <Home posts={postList} user={user}  ></Home>;
 }

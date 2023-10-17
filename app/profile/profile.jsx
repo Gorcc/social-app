@@ -17,6 +17,8 @@ export default async function ProfileComponent({
 }) {
   const showPost = profileContent.id == user.id;
 
+  
+
   return (
     <div className="profile-container flex flex-col items-center">
       <div className="profile-header w-full">
@@ -128,8 +130,10 @@ export default async function ProfileComponent({
         <div className="profile-posts  w-full flex flex-col items-center">
           {posts.reverse().map((post) => (
             <PostComponent
+            
               userPosted={profileContent}
               postContext={post}
+              user={user.id}
             ></PostComponent>
           ))}
         </div>
