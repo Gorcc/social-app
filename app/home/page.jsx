@@ -9,7 +9,12 @@ export default async function Index() {
     data: { user },
   } = await supabase.auth.getUser();
 
-  
+  const { data: userInfo } = await supabase
+  .from("user_profiles")
+  .select()
+  .eq("id", user.id);
+
+
   const { data: followList } = await supabase
     .from("follows")
     .select("followed")
@@ -26,5 +31,5 @@ export default async function Index() {
 
     console.log();
 
-  return <Home posts={postList} user={user}></Home>;
+  return <Home posts={postList} user={user} userInfo={userInfo[0]}  ></Home>;
 }

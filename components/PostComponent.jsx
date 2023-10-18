@@ -5,7 +5,7 @@ import Image from "next/image";
 import "@/app/styles/postcomponent.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
-import { faComment} from "@fortawesome/free-solid-svg-icons";
+import { faComment } from "@fortawesome/free-solid-svg-icons";
 import { useState, useEffect } from "react";
 import { TRUE } from "sass";
 import CommentComponent from "@/components/CommentComponent";
@@ -28,7 +28,7 @@ export default function PostComponent({ postContext, userPosted, user }) {
   const [showComments, setShowComments] = useState(false);
 
   const date = new Date();
-  
+
   const supabase = createClientComponentClient();
   useEffect(() => {
     const fetchPost = async () => {
@@ -37,7 +37,6 @@ export default function PostComponent({ postContext, userPosted, user }) {
         .select()
         .eq("post_id", postId);
 
-      
       setPostLikes(postLikes);
       setLikeCount(postLikes.length);
 
@@ -46,128 +45,106 @@ export default function PostComponent({ postContext, userPosted, user }) {
         .select()
         .eq("post_id", postId);
 
+      setComments(postComments);
 
-        setComments(postComments);
-        
-      
-        const { data: thisUserLike } = await supabase
+      const { data: thisUserLike } = await supabase
         .from("likes")
         .select()
-        .eq("post_id", postId).eq("user_id",user);
-        if (thisUserLike.length!=0){
-          setIsLiked(true);
-        }
-
-
-
+        .eq("post_id", postId)
+        .eq("user_id", user);
+      if (thisUserLike.length != 0) {
+        setIsLiked(true);
+      }
     };
-    
-    fetchPost();
-    
 
-   
-   
+    fetchPost();
   }, []);
 
   async function handleLike() {
     setlikeAnim("likeAnim");
-    
-   const { data, error } = await supabase
-        .from("likes")
-        .select().eq("post_id", postId)
-        .eq("user_id", user);
-        console.log(data)
 
+    const { data, error } = await supabase
+      .from("likes")
+      .select()
+      .eq("post_id", postId)
+      .eq("user_id", user);
+    console.log(data);
 
-    if (data.length==0) {
+    if (data.length == 0) {
       const { data, error } = await supabase
         .from("likes")
         .insert({ post_id: postId, user_id: user });
       console.log(error);
       setIsLiked(true);
       const { data: post } = await supabase
-      .from("likes")
-      .select()
-      .eq("post_id", postId);
+        .from("likes")
+        .select()
+        .eq("post_id", postId);
 
-    setPostLikes(post);
-    setLikeCount(post.length);
+      setPostLikes(post);
+      setLikeCount(post.length);
     } else {
       const { data, error } = await supabase
         .from("likes")
         .delete()
         .eq("post_id", postId)
         .eq("user_id", user);
-        const { data: post } = await supabase
-      .from("likes")
+      const { data: post } = await supabase
+        .from("likes")
+        .select()
+        .eq("post_id", postId);
+
+      setPostLikes(post);
+      setLikeCount(post.length);
+      setIsLiked(false);
+      setlikeAnim("");
+    }
+  }
+
+  async function sendComment(comment) {
+    const { error } = await supabase
+      .from("post_comments")
+      .insert({
+        commentor_id: user,
+        post_id: postId,
+        comment_text: commentText,
+      });
+
+    setCommentText("");
+
+    const { data: postComments } = await supabase
+      .from("post_comments")
       .select()
       .eq("post_id", postId);
 
-    setPostLikes(post);
-    setLikeCount(post.length);
-    setIsLiked(false);
-    setlikeAnim("");
-    
-   
-   
-    }
-    
+    setComments(postComments);
+    setShowComments(true);
   }
 
-
-  async function sendComment(comment){
-
-    const { error } = await supabase
-  .from('post_comments')
-  .insert({ commentor_id:user, post_id:postId,comment_text:commentText  })
-
-  setCommentText("");
-
-  const { data: postComments } = await supabase
-        .from("post_comments")
-        .select()
-        .eq("post_id", postId);
-
-
-        setComments(postComments);
-        setShowComments(true);
-
-
-
-  }
-
-  async function deleteComment(commentid){
-
+  async function deleteComment(commentid) {
     const { data } = await supabase
-        .from("post_comments")
-        .delete()
-        .eq("id", commentid);
+      .from("post_comments")
+      .delete()
+      .eq("id", commentid);
 
+    const { data: postComments } = await supabase
+      .from("post_comments")
+      .select()
+      .eq("post_id", postId);
 
-        const { data: postComments } = await supabase
-        .from("post_comments")
-        .select()
-        .eq("post_id", postId);
+    setComments(postComments);
 
-
-        setComments(postComments);
-
-
-
-  //to-do: popup çıksın sorsun emin misin diye
-
-
+    //to-do: popup çıksın sorsun emin misin diye
   }
 
-
-  function commentStatus(){
+  function commentStatus() {
     setShowComments(!showComments);
   }
 
   return (
-    <div className="post-container flex flex-row w-full p-12">
-      <Link href={"/profile/" + uniqueName}>
-        <div className="post-avatar-div">
+    <div className="post-container flex flex-col w-full p-12">
+      <div className="post-avatar-div flex flex-row">
+        <Link href={"/profile/" + uniqueName}>
           <Image
             width={45}
             height={45}
@@ -176,18 +153,19 @@ export default function PostComponent({ postContext, userPosted, user }) {
             className="avatar image"
             style={{ height: 45, width: 45, borderRadius: 50 }}
           ></Image>
-        </div>
-      </Link>
+        </Link>
 
-      <div className="w-full">
         <Link href={"/profile/" + uniqueName}>
           <div className="flex comment-name">
             <h1 className="font-bold">{userName}</h1>
             <h1 className="text-gray-400">@{uniqueName}</h1>
-            {/* <h2>{postDate}</h2> */}
+            
           </div>
+          <h1 className="text-gray-400">19 October 2023</h1>
         </Link>
+      </div>
 
+      <div className="w-full">
         <div className="post">
           <p className="post-text">{postText}</p>
           {postImage != null && (
@@ -201,36 +179,53 @@ export default function PostComponent({ postContext, userPosted, user }) {
         </div>
         <div className="likes flex flex-row">
           <div className="like-button-and-count">
-          <FontAwesomeIcon className={likeAnim} id="like" onClick={handleLike} icon={faHeart} style={isLiked?{color: "#ff0000",}:{color: "#000000",}} />
-          <span>
-          {likeCount}
-          </span>
+            <FontAwesomeIcon
+              className={likeAnim}
+              id="like"
+              onClick={handleLike}
+              icon={faHeart}
+              style={isLiked ? { color: "#ff0000" } : { color: "#000000" }}
+            />
+            <span>{likeCount}</span>
           </div>
           <div className="comments-button-and-count">
-          <FontAwesomeIcon icon={faComment} onClick={commentStatus} style={showComments?{color: "#52C782",}:{color: "#000000",}} />
-          <span onClick={commentStatus}>
-          {comments?.length}
-          </span>
+            <FontAwesomeIcon
+              icon={faComment}
+              onClick={commentStatus}
+              style={showComments ? { color: "#52C782" } : { color: "#000000" }}
+            />
+            <span onClick={commentStatus}>{comments?.length}</span>
           </div>
-
         </div>
         <hr></hr>
-        <div className={showComments?"comments":"comments comments-hidden"}>
-
-          {
-            comments?.map((comment) => (
-              <CommentComponent deleteComment={deleteComment} comment_id={comment.id} userid= {user} commentor={comment.commentor_id} commentText={comment.comment_text} date={comment.created_at} ></CommentComponent>
-            ) )
-
-           
-          }
-
+        <div className={showComments ? "comments" : "comments comments-hidden"}>
+          {comments?.map((comment) => (
+            <CommentComponent
+              deleteComment={deleteComment}
+              comment_id={comment.id}
+              userid={user}
+              commentor={comment.commentor_id}
+              commentText={comment.comment_text}
+              date={comment.created_at}
+            ></CommentComponent>
+          ))}
         </div>
-        
-        <input type="text" value={commentText} placeholder="Write a comment!" onChange={event => setCommentText(event.target.value)} className="p-4 comment-input" />
-        <button className="send-btn" disabled={!commentText} onClick={sendComment} type="submit"><FontAwesomeIcon icon={faComment} /> Comment</button>
-        
 
+        <input
+          type="text"
+          value={commentText}
+          placeholder="Write a comment!"
+          onChange={(event) => setCommentText(event.target.value)}
+          className="p-4 comment-input"
+        />
+        <button
+          className="send-btn"
+          disabled={!commentText}
+          onClick={sendComment}
+          type="submit"
+        >
+          <FontAwesomeIcon icon={faComment} /> Comment
+        </button>
       </div>
     </div>
   );

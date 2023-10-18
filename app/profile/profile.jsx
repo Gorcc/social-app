@@ -125,12 +125,12 @@ export default async function ProfileComponent({
       <hr />
 
       <div className="posts-container flex flex-col items-center justify-center">
-        {showPost && <CreatePostComponent user={user} />}
+        {showPost && <CreatePostComponent userInfo={profileContent} user={user} />}
 
         <div className="profile-posts  w-full flex flex-col items-center">
           {posts.reverse().map((post) => (
             <PostComponent
-            
+              
               userPosted={profileContent}
               postContext={post}
               user={user.id}

@@ -7,8 +7,10 @@ import { faImage } from "@fortawesome/free-solid-svg-icons";
 import Image from "next/image";
 import { v4 as uuidv4 } from "uuid";
 import "../app/styles/createpost.scss";
+import { userInfo } from "os";
+import Link from "next/link";
 
-export default function CreatePost({ user }) {
+export default function CreatePost({ user, userInfo }) {
   const supabase = createClientComponentClient();
   const [uplodedFile, setUploadedFile] = useState(null);
   const [fileUrl, setFileUrl] = useState(null);
@@ -54,18 +56,22 @@ export default function CreatePost({ user }) {
       });
 
       if (error) throw error;
-      const { data:posts } = await supabase.from("posts").select().eq("user_id",user.id);
-        const { error:updatePostCountError } = await supabase.from("user_profiles").update({
-        post_count:posts.length
-      }).eq("id", user.id);
+      const { data: posts } = await supabase
+        .from("posts")
+        .select()
+        .eq("user_id", user.id);
+      const { error: updatePostCountError } = await supabase
+        .from("user_profiles")
+        .update({
+          post_count: posts.length,
+        })
+        .eq("id", user.id);
 
-      location.reload() ;
+      location.reload();
       alert("Post has been shared!");
     } catch (error) {
       alert("Error occured!");
     } finally {
-      
-
       setLoading(false);
     }
   }
@@ -82,39 +88,56 @@ export default function CreatePost({ user }) {
 
   return (
     <div className="create-post-container">
+     <div className="flex flex-row avatar-and-textarea">
+     <Link href={"/profile/" + userInfo.unique_name}><Image
+        width={45}
+        height={45}
+        alt="Avatar"
+        className="avatar image"
+        style={{ height: 45, width: 45, borderRadius: 50 }}
+        src={process.env.NEXT_PUBLIC_IMG_URL + userInfo.avatar_url}
+      >
+        
+      </Image></Link>
+     
       <textarea
         id="post-message"
         placeholder="Write anything..."
         value={textInput}
         onChange={(event) => setTextInput(event.target.value)}
-      >
-        
-      </textarea>
-    <div className="create-post-uploads flex justify-between w-full">
-    <label className="button primary block" htmlFor="single">
-        {uploading ? (
-          "Uploading ..."
-        ) : (
-          <FontAwesomeIcon className="info-icon font-bold py-2" icon={faImage} />
-        )}
-      </label>
+      ></textarea>
+     </div>
+      <div className="create-post-uploads flex justify-between w-full">
+        <label className="button primary block" htmlFor="single">
+          {uploading ? (
+            "Uploading ..."
+          ) : (
+            <FontAwesomeIcon
+              className="info-icon font-bold py-2"
+              icon={faImage}
+            />
+          )}
+        </label>
 
-      <input
-        style={{
-          visibility: "hidden",
-          position: "absolute",
-        }}
-        type="file"
-        id="single"
-        accept="image/*"
-        onChange={uploadFile}
-        disabled={uploading}
-      />
-      <button className="text-black font-bold py-2 px-4 rounded-full"disabled={loading || !textInput} onClick={submitPost}>
-        Post
-      </button>
-    </div>
-      
+        <input
+          style={{
+            visibility: "hidden",
+            position: "absolute",
+          }}
+          type="file"
+          id="single"
+          accept="image/*"
+          onChange={uploadFile}
+          disabled={uploading}
+        />
+        <button
+          className="text-black font-bold py-2 px-4 rounded-full"
+          disabled={loading || !textInput}
+          onClick={submitPost}
+        >
+          Post
+        </button>
+      </div>
     </div>
   );
 }

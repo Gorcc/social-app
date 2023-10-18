@@ -2,15 +2,24 @@
 
 
 .post-container{
-    height: 100%;
+   height: 100%;
     align-items: stretch;
     border: 1px solid var(--border);
-    border-top: 0;
+    
     padding-bottom: 16px;
     padding-top: 16px;
-    padding: 16px;
-    
-    width: 800px;
+    padding-left: 18px;
+    padding-right: 12px;
+   
+    border-radius: 10px;
+    width: 650px;
+    margin-bottom: 10px;
+}
+.post-container h1 {
+    margin-right: 8px;
+}
+.post-container .w-full .flex {
+    margin-bottom: 8px;
 }
 
 
@@ -22,8 +31,9 @@ hr{
 .post-avatar-div img{
     height: 100%;
     margin: 12px;
+    margin-top: 0;
     max-width: max-content !important;
-    border: 1px solid black;
+   
 }
 
 
@@ -46,7 +56,8 @@ hr{
 
 .post-text {
     margin-bottom: 16px;
-    font-size: 24px;
+    font-size: 20px;
+    margin-left: 16px;
     
 }
 
@@ -64,3 +75,5 @@ hr{
   .like-button-and-count {
     margin-right: 16px;
   }
+
+
