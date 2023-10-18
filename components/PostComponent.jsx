@@ -5,6 +5,7 @@ import Image from "next/image";
 import "@/app/styles/postcomponent.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
+import { faComment} from "@fortawesome/free-solid-svg-icons";
 import { useState, useEffect } from "react";
 import { TRUE } from "sass";
 import CommentComponent from "@/components/CommentComponent";
@@ -23,6 +24,7 @@ export default function PostComponent({ postContext, userPosted, user }) {
   const [likeCount, setLikeCount] = useState();
   const [commentText, setCommentText] = useState();
   const [comments, setComments] = useState();
+  const [likeAnim, setlikeAnim] = useState("");
 
   const date = new Date();
   
@@ -67,6 +69,8 @@ export default function PostComponent({ postContext, userPosted, user }) {
   }, []);
 
   async function handleLike() {
+    setlikeAnim("likeAnim");
+    
    const { data, error } = await supabase
         .from("likes")
         .select().eq("post_id", postId)
@@ -101,7 +105,12 @@ export default function PostComponent({ postContext, userPosted, user }) {
     setPostLikes(post);
     setLikeCount(post.length);
     setIsLiked(false);
+    setlikeAnim("");
+    
+   
+   
     }
+    
   }
 
 
@@ -163,7 +172,7 @@ export default function PostComponent({ postContext, userPosted, user }) {
         </div>
       </Link>
 
-      <div>
+      <div className="w-full">
         <Link href={"/profile/" + uniqueName}>
           <div className="flex">
             <h1 className="font-bold">{userName}</h1>
@@ -184,8 +193,11 @@ export default function PostComponent({ postContext, userPosted, user }) {
           )}
         </div>
         <div className="likes">
-          <FontAwesomeIcon onClick={handleLike} icon={faHeart} style={isLiked?{color: "#ff0000",}:{color: "#000000",}} />
+          <FontAwesomeIcon className={likeAnim} id="like" onClick={handleLike} icon={faHeart} style={isLiked?{color: "#ff0000",}:{color: "#000000",}} />
+          <span>
           {likeCount}
+          </span>
+          
         </div>
         <div className="comments">
 
@@ -199,8 +211,8 @@ export default function PostComponent({ postContext, userPosted, user }) {
 
         </div>
         
-        <input type="text" value={commentText} placeholder="Write a comment!" onChange={event => setCommentText(event.target.value)} className="p-4" />
-        <button disabled={!commentText} onClick={sendComment} type="submit">Send Comment</button>
+        <input type="text" value={commentText} placeholder="Write a comment!" onChange={event => setCommentText(event.target.value)} className="p-4 comment-input" />
+        <button className="send-btn" disabled={!commentText} onClick={sendComment} type="submit"><FontAwesomeIcon icon={faComment} /> Comment</button>
         
 
       </div>

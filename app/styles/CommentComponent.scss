@@ -1,0 +1,92 @@
+
+
+
+.comment-wrap{
+    background-color: rgb(236, 233, 233);
+    padding: 8px;
+    margin-bottom: 8px;
+   
+    width: 100%;
+}
+.comment-profile{
+    display: flex;
+    align-items: center;
+}
+
+
+.comment-context{
+    display: flex;
+    justify-content: space-between;
+    margin: 8px;
+}
+
+.trash-icon{
+    background-color: rgb(189, 17, 17);
+    color: white;
+    padding: 6px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+.send-btn{
+    transition: 0.3s;
+    cursor: pointer;
+    font-weight: bold;
+  
+    border-radius: 5px;
+    padding: 8px;
+    margin-left: 8px;
+
+    svg{
+        color: #1D9BF0;
+        transition: 0.3s;
+    }
+}
+
+.send-btn:hover{
+
+    
+ background-color: #1D9BF0;
+ color: white;
+ svg{
+    color: white;
+}
+}
+
+
+.likes{
+    
+    margin: 8px 0px;
+    cursor: pointer;
+    span{
+        margin-left: 4px;
+        font-size: 24px;
+        
+    }
+    svg{
+        width: 24px;
+        height: 24px;
+       
+    }
+}
+
+
+.comment-input{
+    width: 82%;
+}
+.likeAnim{
+    animation: likeAnim 0.5s ease 0s 1 normal forwards;
+}
+
+@keyframes likeAnim {
+	0% {
+		transform: scale(1);
+	}
+
+	50% {
+		transform: scale(1.2);
+	}
+
+	100% {
+		transform: scale(1);
+	}
+}

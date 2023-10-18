@@ -5,6 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
+import "../app/styles/CommentComponent.scss";
 
 export default function CommentComponent({ deleteComment, comment_id, commentor, commentText, date, userid}) {
   const [user, setUser] = useState();
@@ -35,15 +36,16 @@ export default function CommentComponent({ deleteComment, comment_id, commentor,
     };
     return (
         <div className="comment-wrap">
+          <div className="comment-profile">
           <Link href={"/profile/" + user?.unique_name}>
             <div className="post-avatar-div">
               <Image
-                width={45}
-                height={45}
+                width={35}
+                height={35}
                 src={process.env.NEXT_PUBLIC_IMG_URL + user?.avatar_url}
                 alt="Avatar"
                 className="avatar image"
-                style={{ height: 45, width: 45, borderRadius: 50 }}
+                style={{ height: 35, width: 35, borderRadius: 50 }}
               ></Image>
             </div>
           </Link>
@@ -54,12 +56,14 @@ export default function CommentComponent({ deleteComment, comment_id, commentor,
                 {/* <h2>{postDate}</h2> */}
               </div>
             </Link>
+          </div>
+          
           <div className="comment-context">
               <p>{commentText}</p>
-              
+              {userid == commentor && <FontAwesomeIcon onClick={removeComment} icon={faTrashCan} className="trash-icon"/>}
             </div>
     
-            {userid == commentor && <FontAwesomeIcon onClick={removeComment} icon={faTrashCan} />}
+            
     
         </div>
       );
