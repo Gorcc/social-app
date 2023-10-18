@@ -7,6 +7,8 @@
     border: 1px solid rgb(201, 197, 197);
     border-top: 0;
     padding-bottom: 16px;
+    padding-top: 16px;
+    padding: 16px;
     
     width: 800px;
 }
@@ -36,9 +38,23 @@
   
 }
 
+.post-text {
+    margin-bottom: 16px;
+    font-size: 24px;
+    
+}
+
 @media only screen and (max-width: 1125px) {
     .post-container{
         width: 80%;
         
     }
+  }
+
+  .comments-hidden {
+    display: none;
+  }
+
+  .like-button-and-count {
+    margin-right: 16px;
   }

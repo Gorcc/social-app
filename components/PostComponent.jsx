@@ -25,6 +25,7 @@ export default function PostComponent({ postContext, userPosted, user }) {
   const [commentText, setCommentText] = useState();
   const [comments, setComments] = useState();
   const [likeAnim, setlikeAnim] = useState("");
+  const [showComments, setShowComments] = useState(false);
 
   const date = new Date();
   
@@ -129,6 +130,7 @@ export default function PostComponent({ postContext, userPosted, user }) {
 
 
         setComments(postComments);
+        setShowComments(true);
 
 
 
@@ -157,6 +159,11 @@ export default function PostComponent({ postContext, userPosted, user }) {
 
   }
 
+
+  function commentStatus(){
+    setShowComments(!showComments);
+  }
+
   return (
     <div className="post-container flex flex-row w-full p-12">
       <Link href={"/profile/" + uniqueName}>
@@ -182,7 +189,7 @@ export default function PostComponent({ postContext, userPosted, user }) {
         </Link>
 
         <div className="post">
-          <p>{postText}</p>
+          <p className="post-text">{postText}</p>
           {postImage != null && (
             <Image
               src={process.env.NEXT_PUBLIC_POST_URL + postImage}
@@ -192,14 +199,23 @@ export default function PostComponent({ postContext, userPosted, user }) {
             ></Image>
           )}
         </div>
-        <div className="likes">
+        <div className="likes flex flex-row">
+          <div className="like-button-and-count">
           <FontAwesomeIcon className={likeAnim} id="like" onClick={handleLike} icon={faHeart} style={isLiked?{color: "#ff0000",}:{color: "#000000",}} />
           <span>
           {likeCount}
           </span>
-          
+          </div>
+          <div className="comments-button-and-count">
+          <FontAwesomeIcon icon={faComment} onClick={commentStatus} style={showComments?{color: "#2474ff",}:{color: "#000000",}} />
+          <span onClick={commentStatus}>
+          {comments?.length}
+          </span>
+          </div>
+
         </div>
-        <div className="comments">
+        <hr></hr>
+        <div className={showComments?"comments":"comments comments-hidden"}>
 
           {
             comments?.map((comment) => (
