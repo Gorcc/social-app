@@ -2,11 +2,14 @@ import CreatePostComponent from "@/components/CreatePostComponent";
 import PostComponent from "@/components/PostComponent";
 
 
-export default function Home({ user,posts }) {
+export default function Home({ user,posts}) {
+console.log("test");
+  
   return (
-
+    
 
     <div className="posts-container flex flex-col items-center justify-center mt-8">
+      <h1 className="p-8 font-bold text-xl"> Homepage</h1>
       <CreatePostComponent user={user} />
 
       <div className="profile-posts  w-full flex flex-col items-center">

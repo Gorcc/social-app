@@ -21,6 +21,10 @@
     margin: 8px;
 }
 
+.comment-name h1{
+    
+    margin-right: 6px;
+}
 .trash-icon{
     background-color: rgb(189, 17, 17);
     color: white;
@@ -38,7 +42,7 @@
     margin-left: 8px;
 
     svg{
-        color: #1D9BF0;
+        color: var(--primary-green);
         transition: 0.3s;
     }
 }
@@ -46,7 +50,7 @@
 .send-btn:hover{
 
     
- background-color: #1D9BF0;
+ background-color: var(--primary-green);
  color: white;
  svg{
     color: white;
@@ -72,7 +76,9 @@
 
 
 .comment-input{
-    width: 82%;
+    width: 80%;
+    border-radius: 15px;
+    border: 1px solid var(--primary-green);
 }
 .likeAnim{
     animation: likeAnim 0.5s ease 0s 1 normal forwards;

@@ -6,6 +6,7 @@
   display: flex;
 
   margin-left: calc(30% - 100px);
+  margin-top: 60px;
   
   align-items: center;
 }
@@ -22,10 +23,14 @@
 
 .avatar-btn-div{
     display: flex;
-    flex-direction: column;
+
     justify-content: center;
     text-align: center;
     align-items: center;
+
+    button{
+      margin: 4px;
+    }
     
     
 }
@@ -46,17 +51,20 @@
     border-radius: 50%;
     border: 1px solid grey;
   }
+
+  label{
+    cursor: pointer;
+  }
 }
 
-.form-right label{
-    font-weight: 700;
-}
+
 
 .form-right input{
     width: 350px;
     padding: 12px;
-    background-color: #d9d9d9;
-    text-align: center;
+    border: 1px solid rgb(223, 222, 222);
+    
+    border-radius: 15px;
     
 }
 
@@ -70,6 +78,7 @@
     margin: 16px 40px;
     transition: 0.3s all ease;
     
+    
    form{
     width: 100%;
     margin-left: 4px;
@@ -78,29 +87,35 @@
 }
 .form-buttons button{
     transition: 0.3s all ease;
+    border: 1px solid rgb(223, 222, 222);
 }
 
 .form-buttons button:hover{
     background-color: white;
-    color: var(--blue-700);
-    border: 1px solid var(--blue-700);
+    color: black;
+    
 }
 
 
+
+.form-widget label{
+  margin: 12px 4px;
+}
 .form-widget a{
     display: flex;
     width: 100%;
     padding: 8px;
     align-items: center;
     justify-content: center;
-    font-weight: 700;
+   
     margin-top: 24px;
-    border: 1px solid black;
+    border: 1px solid rgb(223, 222, 222);
     transition: 0.3s all ease;
+    border-radius: 30px;
     
 }
 
 .form-widget a:hover{
-    background-color: var(--blue-700);
+    background-color: var(--primary-green);
     color: white;
 }

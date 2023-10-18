@@ -25,7 +25,7 @@ export default function CommentComponent({ deleteComment, comment_id, commentor,
     fetchUser();
   }, []);
 
-  console.log(date);
+
 
   async function removeComment(){
     if ( userid == commentor){
@@ -50,7 +50,7 @@ export default function CommentComponent({ deleteComment, comment_id, commentor,
             </div>
           </Link>
           <Link href={"/profile/" + user?.unique_name}>
-              <div className="flex">
+              <div className="flex comment-name">
                 <h1 className="font-bold">{user?.user_name}</h1>
                 <h1 className="text-gray-400">@{user?.unique_name}</h1>
                 {/* <h2>{postDate}</h2> */}

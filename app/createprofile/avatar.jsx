@@ -73,10 +73,11 @@ export default function Avatar({ uid, url, size, onUpload,removeAvatar }) {
       />
       )}
       <div className="avatar-btn-div" style={{ width: size }}>
-        <label className="button primary block blue-btn" htmlFor="single">
+        <label className="button primary block green-btn" htmlFor="single">
           {uploading ? 'Uploading ...' : 'Upload Picture'}
+          
         </label>
-        <button onClick={removeAvatar} className='button primary block blue-btn'>Remove Picture</button>
+        <label onClick={removeAvatar} className='button primary block green-btn '>Remove Picture</label>
 
         <input
           style={{

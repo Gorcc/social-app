@@ -191,14 +191,14 @@ export default function AccountForm({ session }) {
         </div>
         <div className="form-buttons">
           <button
-            className="button primary block blue-btn"
+            className="button primary block green-btn"
             onClick={() => updateProfile({ fullname, avatar_url, bio, uniquename })}
             disabled={loading || fullname.length == 0 || uniquename.length==0}
           >
             {loading ? "Loading ..." : "Update"}
           </button>
           <form action="/auth/signout" method="post">
-            <button className="button block blue-btn" type="submit">
+            <button className="button block green-btn" type="submit">
               Sign out
             </button>
           </form>

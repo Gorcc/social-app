@@ -181,7 +181,7 @@ export default function PostComponent({ postContext, userPosted, user }) {
 
       <div className="w-full">
         <Link href={"/profile/" + uniqueName}>
-          <div className="flex">
+          <div className="flex comment-name">
             <h1 className="font-bold">{userName}</h1>
             <h1 className="text-gray-400">@{uniqueName}</h1>
             {/* <h2>{postDate}</h2> */}
@@ -207,7 +207,7 @@ export default function PostComponent({ postContext, userPosted, user }) {
           </span>
           </div>
           <div className="comments-button-and-count">
-          <FontAwesomeIcon icon={faComment} onClick={commentStatus} style={showComments?{color: "#2474ff",}:{color: "#000000",}} />
+          <FontAwesomeIcon icon={faComment} onClick={commentStatus} style={showComments?{color: "#52C782",}:{color: "#000000",}} />
           <span onClick={commentStatus}>
           {comments?.length}
           </span>

@@ -1,6 +1,8 @@
+@import url(./base.css);
+@import url(./variables.css);
 .create-post-container {
   
-  border: 1px solid grey;
+  border: 1px solid var(--border);
   padding: 24px;
   width: 100%;
   
@@ -19,7 +21,7 @@
 
 .create-post-uploads button{
     margin-top: 12px;
-    background-color: #1D9BF0;
+    background-color: var(--primary-green);
     color: white;
     border-radius: 10%;
     border: 1px solid transparent;
@@ -31,15 +33,15 @@
 .create-post-uploads button:hover{
    
         background-color: white;
-        color: #1D9BF0;
-        border: 1px solid #1D9BF0;
+        color: var(--primary-green);
+        border: 1px solid var(--primary-green);
 }
 
 
 
 
 .create-post-uploads path{
-    color: #1D9BF0;
+    color: var(--primary-green);
 
     
 }

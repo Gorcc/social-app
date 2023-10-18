@@ -30,7 +30,7 @@ export default async function HeaderComponent() {
         <div>
           {user ? (
             <div className="header-gap flex items-center gap-4">
-              {data.length!=0 && <div className="flex flex-row items-center"><h1>Hey, {data.length!=0? data[0].user_name : ""}!</h1> <Link href={data.length!=0? "/profile/" + data[0].unique_name : ""}>
+              {data.length!=0 && <div className="flex flex-row items-center"><h1>Hey, <span className="font-bold">{data.length!=0? data[0].user_name : ""}</span>!</h1> <Link href={data.length!=0? "/profile/" + data[0].unique_name : ""}>
                 <Image
                   width={45}
                   height={45}

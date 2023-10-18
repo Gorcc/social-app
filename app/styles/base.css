@@ -1,12 +1,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,600;0,700;0,800;1,600&display=swap');
+@import url('https://fonts.cdnfonts.com/css/helvetica-neue-5');
 
 html{
     overflow-x: hidden;
+   
+    
 }
 
 
 body{
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Helvetica Neue', sans-serif;
+    
 }
    
 
@@ -15,20 +19,22 @@ a,button{
 }
 
 
-.blue-btn{
+.green-btn{
     padding: 8px;
     width: 50%;
-    font-weight: 600;
-    background-color: #152151;
-    border-radius: 5px;
+   
+    background-color: var(--primary-green);
+    border-radius: 30px;
     color: white;
 }
+
+
 .global-nav{
     overflow: hidden;
-    
+    background-color: #E7F4ED;
     position: fixed; /* Set the navbar to fixed position */
     top: 0;
-    background-color: rgb(249,250,251);
+    
     z-index: 100;
 }
 .header-nav{
