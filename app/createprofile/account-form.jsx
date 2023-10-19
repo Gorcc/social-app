@@ -1,6 +1,7 @@
 "use client";
 import { useCallback, useEffect, useState } from "react";
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
+
 import Link from "next/link";
 import Avatar from "./avatar.jsx";
 import "../styles/createprofile.scss";
@@ -12,6 +13,7 @@ export default function AccountForm({ session }) {
   const [fullname, setFullname] = useState("");
   const [uniquename, setUniquename] = useState("");
   const [bio, setBio] = useState(null);
+  const [userLocation, setuserLocation] = useState("");
 
   const [avatar_url, setAvatarUrl] = useState(null);
   const user = session?.user;
@@ -22,7 +24,7 @@ export default function AccountForm({ session }) {
 
       let { data, error, status } = await supabase
         .from("user_profiles")
-        .select(`user_name, unique_name, avatar_url, user_bio`)
+        .select(`user_name, unique_name, avatar_url, user_bio, location`)
         .eq("id", user?.id)
         .single();
 
@@ -35,6 +37,7 @@ export default function AccountForm({ session }) {
         setUniquename(data.unique_name);
         setAvatarUrl(data.avatar_url);
         setBio(data.user_bio);
+        setuserLocation(data.location);
       }
     } catch (error) {
       alert("Error loading user data!");
@@ -47,7 +50,13 @@ export default function AccountForm({ session }) {
     getProfile();
   }, [user, getProfile]);
 
-  async function updateProfile({ fullname, avatar_url, bio, uniquename }) {
+  async function updateProfile({
+    fullname,
+    avatar_url,
+    bio,
+    uniquename,
+    userLocation,
+  }) {
     if (avatar_url != null) {
       try {
         setLoading(true);
@@ -60,6 +69,7 @@ export default function AccountForm({ session }) {
             avatar_url,
             user_bio: bio,
             unique_name: uniquename,
+            location: userLocation,
           })
           .eq("id", user?.id);
 
@@ -68,45 +78,37 @@ export default function AccountForm({ session }) {
         if (error) throw error;
         location.reload();
 
-        alert("Profile updated!");
+        
       } catch (error) {
-
-        
-         if ( error.message =="new row for relation \"user_profiles\" violates check constraint \"user_profiles_unique_name_check\""){
+        if (
+          error.message ==
+          'new row for relation "user_profiles" violates check constraint "user_profiles_unique_name_check"'
+        ) {
           alert("Username must be at least 4 character!");
-        }
-        else if (error.message=="duplicate key value violates unique constraint \"user_profiles_unique_name_key\""){
+        } else if (
+          error.message ==
+          'duplicate key value violates unique constraint "user_profiles_unique_name_key"'
+        ) {
           alert("Username already exists!");
-
-
-          
+        } else {
+          alert("Error updating the data!");
+          console.log(error);
         }
-       
-          else {
-            alert("Error updating the data!");
-            console.log(error);
-          }
-          
-       
-        
-       
-      }
-     
-      
-      finally {
+      } finally {
         setLoading(false);
       }
     } else if (avatar_url == null) {
       try {
         setLoading(true);
 
-        const { error , status } = await supabase
+        const { error, status } = await supabase
           .from("user_profiles")
           .upsert({
             id: user?.id,
             user_name: fullname,
             user_bio: bio,
             unique_name: uniquename,
+            location: userLocation,
           })
           .eq("id", user?.id);
 
@@ -115,9 +117,7 @@ export default function AccountForm({ session }) {
 
         alert("Profile updated!");
       } catch (error) {
-        if (status == 409)
-
-        alert("Error updating the data!");
+        if (status == 409) alert("Error updating the data!");
         console.log(error);
       } finally {
         setLoading(false);
@@ -133,11 +133,10 @@ export default function AccountForm({ session }) {
     location.reload();
     alert("Avatar removed!");
   }
- 
+
   function setUniqueName(value) {
-    var loweredValue=value.toLowerCase();
+    var loweredValue = value.toLowerCase();
     setUniquename(loweredValue.replace(/\s/g, ""));
-    
   }
 
   return (
@@ -151,59 +150,95 @@ export default function AccountForm({ session }) {
             size={300}
             onUpload={(url) => {
               setAvatarUrl(url);
-              updateProfile({ fullname, avatar_url: url, bio, uniquename });
+              updateProfile({
+                fullname,
+                avatar_url: url,
+                bio,
+                uniquename,
+                userLocation,
+              });
             }}
           />
         </div>
       </div>
       <div className="form-right">
-        <div className="form-element">
-          <label htmlFor="email">Email</label>
-          <input id="email" type="text" value={session?.user.email} disabled />
-        </div>
-        <div className="form-element">
-          <label htmlFor="uniqueName">Username</label>
-          <input
-            id="uniqueName"
-            type="text"
-            value={uniquename || ""}
-            onChange={(e) => setUniqueName(e.target.value)}
-          />
-        </div>
-        <div className="form-element">
-          <label htmlFor="fullName">Full Name</label>
-          <input
-            id="fullName"
-            type="text"
-            value={fullname || ""}
-            onChange={(e) => setFullname(e.target.value)}
-          />
-        </div>
+        <div className="form-right-content">
+          <div className="form-elements">
+            <div className="form-element">
+              <label htmlFor="email">Email</label>
+              <input
+                id="email"
+                type="text"
+                value={session?.user.email}
+                disabled
+              />
+            </div>
+            <div className="form-element">
+              <label htmlFor="uniqueName">Username</label>
+              <input
+                id="uniqueName"
+                type="text"
+                value={uniquename || ""}
+                onChange={(e) => setUniqueName(e.target.value)}
+              />
+            </div>
+            <div className="form-element">
+              <label htmlFor="fullName">Full Name</label>
+              <input
+                id="fullName"
+                type="text"
+                value={fullname || ""}
+                onChange={(e) => setFullname(e.target.value)}
+              />
+            </div>
 
-        <div className="form-element">
-          <label htmlFor="bio">Bio</label>
-          <input
-            id="bio"
-            type="text"
-            value={bio || ""}
-            onChange={(e) => setBio(e.target.value)}
-          />
+            <div className="form-element">
+              <label htmlFor="bio">Bio</label>
+              <input
+                id="bio"
+                type="text"
+                value={bio || ""}
+                onChange={(e) => setBio(e.target.value)}
+              />
+            </div>
+          </div>
+          <div className="profile-elements">
+            <div className="form-element">
+              <label htmlFor="bio">Location</label>
+              <input
+                id="location"
+                type="text"
+                value={userLocation || ""}
+                onChange={(e) => setuserLocation(e.target.value)}
+              />
+            </div>
+            <div className="form-buttons">
+              <button
+                className="button primary block green-btn"
+                onClick={() =>
+                  updateProfile({
+                    fullname,
+                    avatar_url,
+                    bio,
+                    uniquename,
+                    userLocation,
+                  })
+                }
+                disabled={
+                  loading || fullname.length == 0 || uniquename.length == 0
+                }
+              >
+                {loading ? "Loading ..." : "Update"}
+              </button>
+              <form action="/auth/signout" method="post">
+                <button className="button block green-btn" type="submit">
+                  Sign out
+                </button>
+              </form>
+            </div>
+            <Link href="/">Return to Home Page</Link>
+          </div>
         </div>
-        <div className="form-buttons">
-          <button
-            className="button primary block green-btn"
-            onClick={() => updateProfile({ fullname, avatar_url, bio, uniquename })}
-            disabled={loading || fullname.length == 0 || uniquename.length==0}
-          >
-            {loading ? "Loading ..." : "Update"}
-          </button>
-          <form action="/auth/signout" method="post">
-            <button className="button block green-btn" type="submit">
-              Sign out
-            </button>
-          </form>
-        </div>
-        <Link href="/">Return to Home Page</Link>
       </div>
     </div>
   );

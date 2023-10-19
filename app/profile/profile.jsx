@@ -65,20 +65,9 @@ export default async function ProfileComponent({
                     className="info-icon"
                     icon={faMapMarkerAlt}
                   />
-                  Cali
+                  {profileContent.location}
                 </li>
-                <li>
-                  <FontAwesomeIcon
-                    className="info-icon"
-                    icon={faBuildingColumns}
-                  />
-                  MIT{" "}
-                </li>
-                <li>
-                  {" "}
-                  <FontAwesomeIcon className="info-icon" icon={faTree} />
-                  23
-                </li>
+               
               </ul>
             </div>
           </div>

@@ -1,6 +1,7 @@
 "use client"
 import Link from 'next/link'
 import Messages from './messages'
+import "../../app/styles/base.css"
 
 
 export default function Login() {
@@ -35,7 +36,7 @@ export default function Login() {
           placeholder="••••••••"
           required
         />
-        <button className="bg-black rounded px-4 py-2 text-white mb-2">
+        <button className="bg-green rounded px-4 py-2 text-white mb-2">
           Sign In
         </button>
         <button

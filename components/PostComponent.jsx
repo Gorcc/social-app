@@ -24,7 +24,7 @@ export default function PostComponent({ postContext, userPosted, user }) {
 
   const [isLiked, setIsLiked] = useState(false);
   const [postLikes, setPostLikes] = useState();
-  const [likeCount, setLikeCount] = useState();
+  const [likeCount, setLikeCount] = useState("0");
   const [commentText, setCommentText] = useState();
   const [comments, setComments] = useState();
   const [likeAnim, setlikeAnim] = useState("");
@@ -71,7 +71,7 @@ export default function PostComponent({ postContext, userPosted, user }) {
       } else {
         if (year == currentDate.getFullYear()) {
           var displayDate = day + " " + month + " " + hour + ":" + minute;
-          console.log(year);
+          
         } else {
           var displayDate = day + " " + month + " " + year;
         }
@@ -259,7 +259,7 @@ export default function PostComponent({ postContext, userPosted, user }) {
             <FontAwesomeIcon
               icon={faComment}
               onClick={commentStatus}
-              style={showComments ? { color: "#52C782" } : { color: "#000000" }}
+              style={showComments ? { color: "var(--primary-green)" } : { color: "#000000" }}
             />
             <span onClick={commentStatus}>{comments?.length}</span>
           </div>

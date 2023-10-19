@@ -17,6 +17,7 @@ export default function CreatePost({ user, userInfo }) {
   const [loading, setLoading] = useState(false);
   const [textInput, setTextInput] = useState("");
   const [uploading, setUploading] = useState(false);
+  const [imageName, setImageName] = useState("");
 
   const uploadFile = async (event) => {
     try {
@@ -28,9 +29,11 @@ export default function CreatePost({ user, userInfo }) {
 
       const file = event.target.files[0];
       setUploadedFile(file);
+      setImageName(file.name);
       const fileExt = file.name.split(".").pop();
       const filePath = user?.id + "/" + Math.random() + "." + fileExt;
       setFileUrl(filePath);
+      
 
       let { error: uploadError } = await supabase.storage
         .from("postfiles")
@@ -68,7 +71,7 @@ export default function CreatePost({ user, userInfo }) {
         .eq("id", user.id);
 
       location.reload();
-      alert("Post has been shared!");
+      
     } catch (error) {
       alert("Error occured!");
     } finally {
@@ -110,12 +113,18 @@ export default function CreatePost({ user, userInfo }) {
       <div className="create-post-uploads flex justify-between w-full">
         <label className="button primary block" htmlFor="single">
           {uploading ? (
+           
             "Uploading ..."
           ) : (
+           <>
+            {/* {fileUrl? <>{imageName} <br /></>:
+            ""} */}
+            
             <FontAwesomeIcon
               className="info-icon font-bold py-2"
               icon={faImage}
             />
+            </>
           )}
         </label>
 
@@ -131,7 +140,7 @@ export default function CreatePost({ user, userInfo }) {
           disabled={uploading}
         />
         <button
-          className="text-black font-bold py-2 px-4 rounded-full"
+          className="post-btn items-center"
           disabled={loading || !textInput}
           onClick={submitPost}
         >

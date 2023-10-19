@@ -3,7 +3,7 @@ import PostComponent from "@/components/PostComponent";
 
 
 export default function Home({ user,posts, userInfo}) {
-console.log("test");
+
   
   return (
     

@@ -23,6 +23,7 @@ export default async function Index() {
     for(let i=0;i<followList.length;i++){
         followList[i]=followList[i].followed;
     }
+    followList.push(user.id);
 
     const { data: postList } = await supabase
     .from("posts")
