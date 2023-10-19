@@ -18,7 +18,7 @@
 .post-container h1 {
     margin-right: 8px;
 }
-.post-container .w-full .flex {
+.likes{
     margin-bottom: 8px;
 }
 
@@ -77,3 +77,11 @@ hr{
   }
 
 
+.post-avatar-div-and-delete-post-icon {
+    justify-content: space-between;
+}
+
+.post-avatar-div-and-delete-post-icon svg {
+    margin-right: 12px;
+    margin-top:4px;
+}

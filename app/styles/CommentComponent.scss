@@ -27,11 +27,15 @@
     margin-right: 6px;
 }
 .trash-icon{
-    background-color: rgb(189, 17, 17);
-    color: white;
+   
+    color: rgb(44, 44, 44);
     padding: 6px;
     border-radius: 50%;
     cursor: pointer;
+}
+.trash-icon:hover {
+    background-color: rgb(255, 0, 0);
+    color: white;
 }
 .send-btn{
     transition: 0.3s;
@@ -98,4 +102,8 @@
 	100% {
 		transform: scale(1);
 	}
+}
+
+.comment-profile-and-delete {
+    justify-content: space-between;
 }
