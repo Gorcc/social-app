@@ -71,7 +71,7 @@ export default async function Index() {
 
          
           {!user? <div className="bg-foreground py-3 px-6 rounded-lg font-mono text-sm text-background">
-          <Link href="/login">Get started</Link>
+          <Link className="link-hover" href="/login">Get started</Link>
              
           </div>: null}
           
@@ -85,7 +85,8 @@ export default async function Index() {
             <Link
               href="https://www.youtube.com/shorts/6s5jXh3DqnI"
               target="_blank"
-              className="font-bold"
+              className="font-bold link-hover"
+              
             >
               Sadbois
             </Link>

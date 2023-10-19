@@ -15,7 +15,7 @@ export default function FooterComponent() {
             <Link
               href="https://www.youtube.com/shorts/6s5jXh3DqnI"
               target="_blank"
-              className="font-bold"
+              className="font-bold link-hover"
             >
               Sadbois
             </Link>

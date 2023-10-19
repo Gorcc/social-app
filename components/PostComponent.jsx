@@ -10,7 +10,10 @@ import { faComment } from "@fortawesome/free-solid-svg-icons";
 import { useState, useEffect } from "react";
 import { TRUE } from "sass";
 import CommentComponent from "@/components/CommentComponent";
-import { get } from "http";
+import { Dialog } from "@radix-ui/themes";
+import * as HoverCard from "@radix-ui/react-hover-card";
+
+import Tooltip from "@mui/material/Tooltip";
 
 export default function PostComponent({ postContext, userPosted, user }) {
   var postText = postContext.post_text;
@@ -50,16 +53,15 @@ export default function PostComponent({ postContext, userPosted, user }) {
   var month = months[date.getMonth()];
   var day = date.getDate();
   var year = date.getFullYear();
-  var minute = date.getMinutes();
+  var minute = (date.getMinutes() < 10 ? "0" : "") + date.getMinutes();
   var hour = date.getHours();
 
   var dateDiff = (currentDate - date) / 1000;
 
   if (dateDiff < 3600) {
-    if (dateDiff<60){
-      var displayDate="now";
-    }
-    else {
+    if (dateDiff < 60) {
+      var displayDate = "now";
+    } else {
       var displayDate = Math.round(dateDiff / 60).toString() + "m";
     }
   } else {
@@ -71,7 +73,6 @@ export default function PostComponent({ postContext, userPosted, user }) {
       } else {
         if (year == currentDate.getFullYear()) {
           var displayDate = day + " " + month + " " + hour + ":" + minute;
-          
         } else {
           var displayDate = day + " " + month + " " + year;
         }
@@ -204,31 +205,116 @@ export default function PostComponent({ postContext, userPosted, user }) {
     <div className="post-container flex flex-col w-full p-12">
       <div className="flex post-avatar-div-and-delete-post-icon">
         <div className="post-avatar-div flex flex-row">
-          <Link href={"/profile/" + uniqueName}>
-            <Image
-              width={45}
-              height={45}
-              src={process.env.NEXT_PUBLIC_IMG_URL + userAvatar}
-              alt="Avatar"
-              className="avatar image"
-              style={{ height: 45, width: 45, borderRadius: 50 }}
-            ></Image>
-          </Link>
+          <HoverCard.Root>
+            <HoverCard.Trigger asChild>
+              <Link href={"/profile/" + uniqueName} className="link-hover">
+                <Image
+                  width={45}
+                  height={45}
+                  src={process.env.NEXT_PUBLIC_IMG_URL + userAvatar}
+                  alt="Avatar"
+                  className="avatar avatar-link image"
+                  style={{ height: 45, width: 45, borderRadius: 50 }}
+                ></Image>
+              </Link>
+            </HoverCard.Trigger>
+            <HoverCard.Portal>
+              <HoverCard.Content className="HoverCardContent" sideOffset={5}>
+                <div
+                  style={{ display: "flex", flexDirection: "column", gap: 7 }}
+                >
+                  <Link href={"/profile/" + uniqueName} className="link-hover">
+                    <Image
+                      className="Image avatar-link large"
+                      width={45}
+                      height={45}
+                      src={process.env.NEXT_PUBLIC_IMG_URL + userAvatar}
+                      alt="hover avatar"
+                      style={{ height: 45, width: 45, borderRadius: 50 }}
+                    />
+                  </Link>
 
-          <Link href={"/profile/" + uniqueName}>
+                  <div
+                    style={{
+                      display: "flex",
+                      flexDirection: "column",
+                      gap: 15,
+                    }}
+                  >
+                    <Link
+                      className="link-hover"
+                      href={"/profile/" + uniqueName}
+                    >
+                      <div>
+                        <div className="Text hover-avatar-text bold">
+                          {userName}
+                        </div>
+                        <div className="Text  hover-avatar-text faded">
+                          @{uniqueName}
+                        </div>
+                      </div>
+                    </Link>
+                    <div className="Text">{userPosted.user_bio}</div>
+                    <div style={{ display: "flex", gap: 15 }}>
+                      <div style={{ display: "flex", gap: 5 }}>
+                        <div className="Text bold">
+                          {userPosted.followed_count}
+                        </div>{" "}
+                        <div className="Text faded">Following</div>
+                      </div>
+                      <div style={{ display: "flex", gap: 5 }}>
+                        <div className="Text bold">
+                          {userPosted.follower_count}
+                        </div>{" "}
+                        <div className="Text faded">Followers</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <HoverCard.Arrow className="HoverCardArrow" />
+              </HoverCard.Content>
+            </HoverCard.Portal>
+          </HoverCard.Root>
+
+          <Link className="link-hover" href={"/profile/" + uniqueName}>
             <div className="flex comment-name">
               <h1 className="font-bold">{userName}</h1>
               <h1 className="text-gray-400">@{uniqueName}</h1>
             </div>
-            <h1 className="text-gray-400">{displayDate}</h1>
+
+            <Tooltip
+              title={day + " " + month + " " + year + " " + hour + ":" + minute}
+              placement="bottom"
+            >
+              <h1 className="date-text text-gray-400">{displayDate}</h1>
+            </Tooltip>
           </Link>
         </div>
         {user == userID && (
-          <FontAwesomeIcon
-            onClick={deletePost}
-            icon={faTrashCan}
-            className="trash-icon"
-          />
+          <Dialog.Root>
+            <Dialog.Trigger>
+              <FontAwesomeIcon icon={faTrashCan} className="trash-icon" />
+            </Dialog.Trigger>
+
+            <Dialog.Content style={{ maxWidth: 450 }}>
+              <Dialog.Title>Delete Post</Dialog.Title>
+              <Dialog.Description size="2" mb="6">
+                Do you wish to delete this post?
+              </Dialog.Description>
+
+              <div className="flex flex-col">
+                <Dialog.Close>
+                  <button className="send-btn">Cancel</button>
+                </Dialog.Close>
+                <Dialog.Close>
+                  <button onClick={deletePost} className="send-btn">
+                    Delete
+                  </button>
+                </Dialog.Close>
+              </div>
+            </Dialog.Content>
+          </Dialog.Root>
         )}
       </div>
 
@@ -259,7 +345,11 @@ export default function PostComponent({ postContext, userPosted, user }) {
             <FontAwesomeIcon
               icon={faComment}
               onClick={commentStatus}
-              style={showComments ? { color: "var(--primary-green)" } : { color: "#000000" }}
+              style={
+                showComments
+                  ? { color: "var(--primary-green)" }
+                  : { color: "#000000" }
+              }
             />
             <span onClick={commentStatus}>{comments?.length}</span>
           </div>

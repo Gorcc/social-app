@@ -6,7 +6,7 @@ import "@/app/styles/followlist.scss"
 export default function Follower({ follower }) {
   return (
     <div className="follower-container">
-      <Link className="follower" href={"/profile/" + follower.unique_name}>
+      <Link className="follower link-hover" href={"/profile/" + follower.unique_name}>
         <Image
           width={45}
           height={45}

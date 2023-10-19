@@ -5,6 +5,7 @@ import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import Link from "next/link";
 import Avatar from "./avatar.jsx";
 import "../styles/createprofile.scss";
+import { Alert, AlertTitle } from "@mui/material";
 
 export default function AccountForm({ session }) {
   const supabase = createClientComponentClient();
@@ -77,8 +78,6 @@ export default function AccountForm({ session }) {
 
         if (error) throw error;
         location.reload();
-
-        
       } catch (error) {
         if (
           error.message ==
@@ -141,6 +140,10 @@ export default function AccountForm({ session }) {
 
   return (
     <div className="form-widget">
+      <Alert className="absolute alert" severity="error">
+        <AlertTitle>Error</AlertTitle>
+        This is an error alert — <strong>check it out!</strong>
+      </Alert>
       <div className="form-left">
         <div>
           <Avatar
@@ -236,7 +239,7 @@ export default function AccountForm({ session }) {
                 </button>
               </form>
             </div>
-            <Link href="/">Return to Home Page</Link>
+            <Link className="link-hover" href="/">Return to Home Page</Link>
           </div>
         </div>
       </div>

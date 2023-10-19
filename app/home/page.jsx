@@ -27,7 +27,7 @@ export default async function Index() {
 
     const { data: postList } = await supabase
     .from("posts")
-    .select("post_id,user_id,created_at,post_text,post_file, user_profiles(user_name,avatar_url,unique_name)")
+    .select("post_id,user_id,created_at,post_text,post_file, user_profiles(id,user_name,avatar_url,unique_name,follower_count,followed_count,user_bio)")
     .in("user_id", followList);
 
     console.log();

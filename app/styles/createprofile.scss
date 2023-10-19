@@ -127,3 +127,9 @@
     background-color: var(--primary-green);
     color: white;
 }
+
+.alert {
+  top: 15%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}

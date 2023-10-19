@@ -4,7 +4,7 @@ import PostComponent from "@/components/PostComponent";
 
 export default function Home({ user,posts, userInfo}) {
 
-  
+  console.log(posts[0].user_profiles);
   return (
     
 
