@@ -30,9 +30,18 @@
   
   
 }
-.follow-btn{
+.follow-btn button{
   
-  margin-left: 32px;
+  font-size: 16px;
+  font-weight: 700;
+  border: 3px solid var(--primary-green);
+  padding: 8px;
+  z-index: 1;
+  width: 100px;
+  margin-right: 32px;
+  text-align: center;
+  border-radius: 15px;
+
   
 }
 

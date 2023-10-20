@@ -58,11 +58,11 @@ export default async function Index() {
    
    
   return (
-    <div className="min-h-screen w-full flex flex-col items-center relative">
+    <div className="h-screen w-full flex flex-col items-center relative">
       
       
       
-      <div className="animate-in flex flex-col gap-14 opacity-0 px-3 py-16 lg:py-24 text-foreground w-screen">
+      <div className="h-full animate-in flex flex-col gap-14 opacity-0 px-3 py-20  text-foreground w-screen">
         <div className="landing-wrap flex items-center justify-between">
           <div className="landing-left ml-40">
           <div className="flex flex-col items-center mb-4 lg:mb-12">
@@ -93,7 +93,7 @@ export default async function Index() {
 
         
 
-        <div className="flex justify-center text-center text-xs mt-12">
+        <div className="flex justify-center text-center text-xs mt-4">
           <p>
             Made with ❤️ by{' '}
             <Link

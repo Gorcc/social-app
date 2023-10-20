@@ -9,7 +9,7 @@ export default function Home({ user,posts, userInfo}) {
     
 
     <div className="posts-container flex flex-col items-center justify-center mt-8">
-      <h1 className="p-8 font-bold text-xl"> Homepage</h1>
+      <h1 className="p-8 font-bold text-xl mt-12"> Homepage</h1>
       <CreatePostComponent user={user} userInfo={userInfo} />
 
       <div className="profile-posts  w-full flex flex-col items-center">

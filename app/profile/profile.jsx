@@ -21,7 +21,7 @@ export default async function ProfileComponent({
 
   return (
     <div className="profile-container flex flex-col items-center">
-      <div className="profile-header w-full">
+      <div className="mt-12 profile-header w-full">
         <div className="header-left flex items-center justify-center ml-48">
           <Image
             src={
@@ -41,17 +41,7 @@ export default async function ProfileComponent({
               <h2 className="text-gray-400 mb-4">@{profileContent.unique_name}</h2>
               </div>
              
-             <div className="follow-btn">
-             {!showPost && (
-                <FollowButton
-                
-                  posts={posts}
-                  profileContent={profileContent}
-                  user={user}
-                  followStatus={followStatus}
-                ></FollowButton>
-              )}
-             </div>
+             
               
             </div>
            
@@ -73,7 +63,19 @@ export default async function ProfileComponent({
           </div>
         </div>
         <div className="header-right flex w-1/2 justify-end items-center">
+        <div className="follow-btn">
+             {!showPost && (
+                <FollowButton
+                
+                  posts={posts}
+                  profileContent={profileContent}
+                  user={user}
+                  followStatus={followStatus}
+                ></FollowButton>
+              )}
+             </div>
           <div className="followers">
+            
             <ul>
               <li>
                 <Link className="link-hover" href={"/followers/"+profileContent.unique_name}>
