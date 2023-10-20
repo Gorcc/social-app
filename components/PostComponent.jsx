@@ -305,7 +305,7 @@ export default function PostComponent({ postContext, userPosted, user }) {
 
               <div className="flex flex-col">
                 <Dialog.Close>
-                  <button className="send-btn">Cancel</button>
+                  <button className="send-btn mb-2">Cancel</button>
                 </Dialog.Close>
                 <Dialog.Close>
                   <button onClick={deletePost} className="send-btn">

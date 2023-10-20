@@ -140,10 +140,10 @@ export default function AccountForm({ session }) {
 
   return (
     <div className="form-widget">
-      <Alert className="absolute alert" severity="error">
+      {/* <Alert className="absolute alert" severity="error">
         <AlertTitle>Error</AlertTitle>
         This is an error alert — <strong>check it out!</strong>
-      </Alert>
+      </Alert> */}
       <div className="form-left">
         <div>
           <Avatar

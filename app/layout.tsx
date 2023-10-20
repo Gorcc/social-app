@@ -26,7 +26,7 @@ export default function RootLayout({
       <body>
         <HeaderComponent></HeaderComponent>
         
-        <main className="min-h-screen mt-12 bg-background flex flex-col items-center">
+        <main className="mt-12 bg-background flex flex-col items-center">
           {children}
         </main>
         

@@ -6,6 +6,10 @@ html{
 
 }
 
+.primary-color-text{
+    color: var(--primary-green);
+
+}
 
 body{font-family: 'Helvetica Neue', sans-serif;
 
@@ -54,3 +58,25 @@ a,button{
     background-color: var(--primary-green);
 }
 
+
+
+.custom-shape-divider-bottom-1697802524 {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+    transform: rotate(180deg);
+}
+
+.custom-shape-divider-bottom-1697802524 svg {
+    position: relative;
+    display: block;
+    width: calc(100% + 1.3px);
+    height: 171px;
+}
+
+.custom-shape-divider-bottom-1697802524 .shape-fill {
+    fill: #F91543;
+}
