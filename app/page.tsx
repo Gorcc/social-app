@@ -58,7 +58,7 @@ export default async function Index() {
    
    
   return (
-    <div className="w-full flex flex-col items-center relative">
+    <div className="min-h-screen w-full flex flex-col items-center relative">
       
       
       
