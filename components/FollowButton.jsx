@@ -8,8 +8,7 @@ import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 
 export default function FollowButton({ profileContent, user, followStatus }) {
     const supabase = createClientComponentClient();
-    const previousFollower = profileContent.follower_count;
-    const previousFollowed = user.followed_count;
+   
     const [isFollowed,setIsFollowed] = useState(followStatus.length);
 
   
@@ -67,5 +66,5 @@ export default function FollowButton({ profileContent, user, followStatus }) {
       
     };
  
-  return <button  onClick={isFollowed!=0?handleUnfollow:handleFollow}>{isFollowed!=0?"Unfollow":"Follow"}</button>;
+  return profileContent.id != user.id && <button  onClick={isFollowed!=0?handleUnfollow:handleFollow}>{isFollowed!=0?"Unfollow":"Follow"}</button> ;
 }
