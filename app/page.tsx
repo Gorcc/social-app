@@ -10,6 +10,7 @@ import HeaderComponent from '@/components/HeaderComponent'
 import svgImage from "@/app/styles/undraw_mobile_content_xvgr.svg"
 
 export const dynamic = 'force-dynamic'
+import "@/app/styles/landing.scss"
 
 
 

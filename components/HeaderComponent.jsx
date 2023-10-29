@@ -22,7 +22,7 @@ export default async function HeaderComponent() {
 
   return (
     <nav className="w-full global-nav flex justify-center border-b border-b-foreground/10 h-16 z-50">
-      <div className="header-nav w-full max-w-4xl flex justify-between items-center p-3 text-sm text-foreground z-50">
+      <div className="header-nav w-full max-w-4xl flex justify-between items-center p-3 text-sm text-foreground z-50 ">
         <Link className="link-hover" href="/">
           <strong style={{color: "var(--primary-green)"}}>Social App by Sadbois</strong>
         </Link>

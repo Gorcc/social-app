@@ -1,3 +1,46 @@
 .follower h1{
     margin-right: 12px;
 }
+
+
+.follower-container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid var(--border);
+    margin: 8px;
+    padding: 20px;
+    border-radius: 15px;
+}
+
+.search-follow-btn{
+margin-left: 24px;
+    font-weight: 700;
+    background-color: var(--primary-green);
+    color: white;
+    width: 100px;
+    height: 40px;
+    border-radius: 15px;
+}
+
+.search-item{
+    min-width: 250px;
+    max-width: 250px;
+    display: flex;
+    
+
+    h1{
+        font-weight: bold;
+    }
+}
+.search-item h1,h2,p{
+    margin: 0;
+    margin-left: 12px;
+}
+
+.search-item p{
+    margin-top: 20px;
+    overflow-wrap: break-word;
+    color: gray;
+    
+}

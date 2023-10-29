@@ -1,13 +1,13 @@
 "use client";
 import { useCallback, useEffect, useState } from "react";
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
-
+import LeftMenu from "@/components/LeftMenuComponent.jsx";
 import Link from "next/link";
 import Avatar from "./avatar.jsx";
 import "../styles/createprofile.scss";
 import { Alert, AlertTitle } from "@mui/material";
 
-export default function AccountForm({ session }) {
+export default function AccountForm({ session, cuser }) {
   const supabase = createClientComponentClient();
 
   const [loading, setLoading] = useState(true);
@@ -139,110 +139,114 @@ export default function AccountForm({ session }) {
   }
 
   return (
-    <div className="form-widget">
-      {/* <Alert className="absolute alert" severity="error">
-        <AlertTitle>Error</AlertTitle>
-        This is an error alert — <strong>check it out!</strong>
-      </Alert> */}
-      <div className="form-left">
-        <div>
-          <Avatar
-            removeAvatar={removeAvatar}
-            uid={user.id}
-            url={avatar_url}
-            size={300}
-            onUpload={(url) => {
-              setAvatarUrl(url);
-              updateProfile({
-                fullname,
-                avatar_url: url,
-                bio,
-                uniquename,
-                userLocation,
-              });
-            }}
+   <div className="mt-12">
+     <LeftMenu userProfile={cuser[0]} currentPage="editprofile"></LeftMenu>
+
+<div className="form-widget">
+  {/* <Alert className="absolute alert" severity="error">
+    <AlertTitle>Error</AlertTitle>
+    This is an error alert — <strong>check it out!</strong>
+  </Alert> */}
+  <div className="form-left">
+    <div>
+      <Avatar
+        removeAvatar={removeAvatar}
+        uid={user.id}
+        url={avatar_url}
+        size={300}
+        onUpload={(url) => {
+          setAvatarUrl(url);
+          updateProfile({
+            fullname,
+            avatar_url: url,
+            bio,
+            uniquename,
+            userLocation,
+          });
+        }}
+      />
+    </div>
+  </div>
+  <div className="form-right">
+    <div className="form-right-content">
+      <div className="form-elements">
+        <div className="form-element">
+          <label htmlFor="email">Email</label>
+          <input
+            id="email"
+            type="text"
+            value={session?.user.email}
+            disabled
+          />
+        </div>
+        <div className="form-element">
+          <label htmlFor="uniqueName">Username</label>
+          <input
+            id="uniqueName"
+            type="text"
+            value={uniquename || ""}
+            onChange={(e) => setUniqueName(e.target.value)}
+          />
+        </div>
+        <div className="form-element">
+          <label htmlFor="fullName">Full Name</label>
+          <input
+            id="fullName"
+            type="text"
+            value={fullname || ""}
+            onChange={(e) => setFullname(e.target.value)}
+          />
+        </div>
+
+        <div className="form-element">
+          <label htmlFor="bio">Bio</label>
+          <input
+            id="bio"
+            type="text"
+            value={bio || ""}
+            onChange={(e) => setBio(e.target.value)}
           />
         </div>
       </div>
-      <div className="form-right">
-        <div className="form-right-content">
-          <div className="form-elements">
-            <div className="form-element">
-              <label htmlFor="email">Email</label>
-              <input
-                id="email"
-                type="text"
-                value={session?.user.email}
-                disabled
-              />
-            </div>
-            <div className="form-element">
-              <label htmlFor="uniqueName">Username</label>
-              <input
-                id="uniqueName"
-                type="text"
-                value={uniquename || ""}
-                onChange={(e) => setUniqueName(e.target.value)}
-              />
-            </div>
-            <div className="form-element">
-              <label htmlFor="fullName">Full Name</label>
-              <input
-                id="fullName"
-                type="text"
-                value={fullname || ""}
-                onChange={(e) => setFullname(e.target.value)}
-              />
-            </div>
-
-            <div className="form-element">
-              <label htmlFor="bio">Bio</label>
-              <input
-                id="bio"
-                type="text"
-                value={bio || ""}
-                onChange={(e) => setBio(e.target.value)}
-              />
-            </div>
-          </div>
-          <div className="profile-elements">
-            <div className="form-element">
-              <label htmlFor="bio">Location</label>
-              <input
-                id="location"
-                type="text"
-                value={userLocation || ""}
-                onChange={(e) => setuserLocation(e.target.value)}
-              />
-            </div>
-            <div className="form-buttons">
-              <button
-                className="button primary block green-btn"
-                onClick={() =>
-                  updateProfile({
-                    fullname,
-                    avatar_url,
-                    bio,
-                    uniquename,
-                    userLocation,
-                  })
-                }
-                disabled={
-                  loading || fullname.length == 0 || uniquename.length == 0
-                }
-              >
-                {loading ? "Loading ..." : "Update"}
-              </button>
-              <form action="/auth/signout" method="post">
-                <button className="button block green-btn" type="submit">
-                  Sign out
-                </button>
-              </form>
-            </div>
-            <Link className="link-hover" href="/">Return to Home Page</Link>
-          </div>
+      <div className="profile-elements">
+        <div className="form-element">
+          <label htmlFor="bio">Location</label>
+          <input
+            id="location"
+            type="text"
+            value={userLocation || ""}
+            onChange={(e) => setuserLocation(e.target.value)}
+          />
         </div>
+        <div className="form-buttons">
+          <button
+            className="button primary block green-btn"
+            onClick={() =>
+              updateProfile({
+                fullname,
+                avatar_url,
+                bio,
+                uniquename,
+                userLocation,
+              })
+            }
+            disabled={
+              loading || fullname.length == 0 || uniquename.length == 0
+            }
+          >
+            {loading ? "Loading ..." : "Update"}
+          </button>
+          <form action="/auth/signout" method="post">
+            <button className="button block green-btn" type="submit">
+              Sign out
+            </button>
+          </form>
+        </div>
+        <Link className="link-hover" href="/">Return to Home Page</Link>
       </div>
     </div>
+  </div>
+</div>
+   </div>
   );
 }
