@@ -254,7 +254,7 @@ export default function PostComponent({ postContext, userPosted, user }) {
                         </div>
                       </div>
                     </Link>
-                    <div className="Text">{userPosted.user_bio}</div>
+                    <p className="Text hover-card-bio">{userPosted.user_bio}</p>
                     <div style={{ display: "flex", gap: 15 }}>
                       <div style={{ display: "flex", gap: 5 }}>
                         <div className="Text bold">

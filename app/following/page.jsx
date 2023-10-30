@@ -3,13 +3,14 @@ import { cookies } from "next/headers";
 
 import FollowButton from "@/components/FollowButton";
 import FollowListComponent from "@/components/FollowListComponent";
+import LeftMenu from "@/components/LeftMenuComponent";
 
 export default async function Followings({ targetProfile }) {
   const supabase = createServerComponentClient({ cookies });
 
   const { data: target } = await supabase
     .from("user_profiles")
-    .select("id")
+    .select()
     .eq("unique_name", targetProfile);
 
 
@@ -33,6 +34,7 @@ export default async function Followings({ targetProfile }) {
   
     return (
       <div>
+        <LeftMenu currentPage={"profile"} userProfile={target[0]}></LeftMenu>
         <FollowListComponent
           targetProfile={targetProfile}
           listType="Following"

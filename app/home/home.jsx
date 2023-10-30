@@ -1,7 +1,6 @@
 import CreatePostComponent from "@/components/CreatePostComponent";
 import PostComponent from "@/components/PostComponent";
-import SearchComponent from "@/components/SearchComponent";
-import LeftMenu from "@/components/LeftMenuComponent"
+import LeftMenu from "@/components/LeftMenuComponent";
 
 export default function Home({ user, posts, userInfo }) {
   console.log(posts[0].user_profiles);

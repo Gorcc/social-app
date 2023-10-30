@@ -148,7 +148,7 @@ export default function CommentComponent({
                         </div>
                       </div>
                     </Link>
-                    <div className="Text">{user?.user_bio}</div>
+                    <div className="hover-card-bio Text">{user?.user_bio}</div>
                     <div style={{ display: "flex", gap: 15 }}>
                       <div style={{ display: "flex", gap: 5 }}>
                         <div className="Text bold">{user?.followed_count}</div>{" "}

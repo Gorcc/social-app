@@ -2,13 +2,14 @@ import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 import { cookies } from "next/headers";
 
 import FollowListComponent from "@/components/FollowListComponent";
+import LeftMenu from "@/components/LeftMenuComponent";
 
 export default async function Followers({ targetProfile }) {
   const supabase = createServerComponentClient({ cookies });
 
   const { data: target } = await supabase
     .from("user_profiles")
-    .select("id")
+    .select()
     .eq("unique_name", targetProfile);
     if (target[0]){
 
@@ -28,6 +29,7 @@ export default async function Followers({ targetProfile }) {
 
   return (
     <div>
+      <LeftMenu userProfile={target[0]} currentPage="profile"></LeftMenu>
       <FollowListComponent
         targetProfile={targetProfile}
         listType="Followers"

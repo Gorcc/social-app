@@ -82,3 +82,10 @@ a,button{
 .custom-shape-divider-bottom-1697802524 .shape-fill {
     fill: #F91543;
 }
+
+
+.recommend-users-div {
+    position: fixed;
+    top: 20%;
+    right: 10%;
+}

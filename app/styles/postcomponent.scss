@@ -6,6 +6,7 @@
     align-items: stretch;
     border: 1px solid var(--border);
     
+
     padding-bottom: 16px;
     padding-top: 16px;
     padding-left: 18px;
@@ -214,3 +215,8 @@ a {
     cursor: pointer;
 }
 
+
+.hover-card-bio {
+  
+  word-wrap: break-word;
+}

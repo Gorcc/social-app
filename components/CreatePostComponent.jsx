@@ -97,7 +97,7 @@ export default function CreatePost({ user, userInfo }) {
         height={45}
         alt="Avatar"
         className="avatar image"
-        style={{ height: 45, width: 45, borderRadius: 50 }}
+        style={{ margin:4, height: 45, width: 45, borderRadius: 50 }}
         src={process.env.NEXT_PUBLIC_IMG_URL + userInfo.avatar_url}
       >
         
