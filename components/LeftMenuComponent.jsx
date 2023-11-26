@@ -11,7 +11,9 @@ import Image from "next/image";
 import "@/app/styles/LeftMenu.scss";
 
 export default function LeftMenu({ currentPage, userProfile }) {
-  return (
+ if(!userProfile){
+  return null;
+ } return (
     <div className="left-menu">
       <div>
         <SearchComponent></SearchComponent>
