@@ -1,10 +1,11 @@
 import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 import { cookies } from "next/headers";
 import Home from "../home/home";
+import ChatServer from "@/components/Chat/ChatServer";
 
 export default async function Index() {
   const supabase = createServerComponentClient({ cookies });
-
+ 
   const {
     data: { user },
   } = await supabase.auth.getUser();
@@ -34,5 +35,6 @@ export default async function Index() {
     })
     console.log(filteredPosts);
 
-  return <Home posts={postList.reverse()} filteredPosts={filteredPosts.reverse()} user={user} userInfo={userInfo[0]}  ></Home>;
+  return <div><Home posts={postList.reverse()} filteredPosts={filteredPosts.reverse()} user={user} userInfo={userInfo[0]}  ></Home>
+  <ChatServer></ChatServer></div>;
 }
