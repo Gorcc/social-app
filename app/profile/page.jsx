@@ -1,6 +1,5 @@
 import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 import { cookies } from "next/headers";
-
 import ProfileComponent from "./profile";
 import FollowButton from "@/components/FollowButton";
 

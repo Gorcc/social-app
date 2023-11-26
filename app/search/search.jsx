@@ -3,7 +3,7 @@ import Link from "next/link";
 import "@/app/styles/followlist.scss";
 import SearchItem from "@/components/SearchItemComponent";
 import LeftMenu from "@/components/LeftMenuComponent";
-import SearchComponent from "@/components/SearchComponent"
+import SearchComponent from "@/components/SearchComponent";
 
 export default async function Search({ searchResults, user }) {
   return (
@@ -12,9 +12,13 @@ export default async function Search({ searchResults, user }) {
       <div className="follow-list-div flex flex-col justify-center items-center">
         <h1 className="font-bold">Search Results</h1>
         <div>
-          {searchResults.map((result) => (
-            <SearchItem profileContent={result} user={user}></SearchItem>
-          ))}
+          {searchResults.length != 0 ? (
+            searchResults.map((result) => (
+              <SearchItem profileContent={result} user={user}></SearchItem>
+            ))
+          ) : (
+            <h1>Nothing Found.</h1>
+          )}
         </div>
       </div>
     </div>
