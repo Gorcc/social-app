@@ -5,7 +5,7 @@ import SearchItem from "@/components/SearchItemComponent";
 import LeftMenu from "@/components/LeftMenuComponent";
 import SearchComponent from "@/components/SearchComponent";
 
-export default async function Search({ searchResults, user }) {
+export default async function Search({ searchResults, user,searchQuery }) {
   return (
     <div>
       <LeftMenu currentPage={"search"} userProfile={user}></LeftMenu>
@@ -17,7 +17,7 @@ export default async function Search({ searchResults, user }) {
               <SearchItem profileContent={result} user={user}></SearchItem>
             ))
           ) : (
-            <h1>Nothing Found.</h1>
+            <h1 className="mt-12">Nothing found from the search <strong>"{searchQuery}"</strong>.</h1>
           )}
         </div>
       </div>

@@ -19,5 +19,5 @@ export default async function SearchPage({ searchQuery }) {
 
     console.log(searchResults);
 
-  return <Search searchResults={searchResults} user={userProfile[0]}></Search>;
+  return <Search searchResults={searchResults} user={userProfile[0]} searchQuery={searchQuery}></Search>;
 }

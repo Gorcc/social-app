@@ -32,12 +32,12 @@ export default async function Index() {
   
    
   if (user) {
-    const { data, error} = await supabase.from('user-profiles').select().eq("id", user?.id);
+    const { data, error} = await supabase.from('user_profiles').select().eq("id", user?.id);
     
     
       
      
-    if(!data){
+    if(!data ){
       redirect("createprofile");
     }
     else {
@@ -46,15 +46,6 @@ export default async function Index() {
     
 
   }
-  
-
-  
-  
-   
-  
-
-  
-
   
    
    

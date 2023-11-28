@@ -10,6 +10,7 @@ import ChatBox from "@/components/Chat/ChatBox";
 
 export default function ChatComponent({ followList, messages, userId, previousProfiles }) {
   const [messageList, setMessageList] = useState(messages);
+  const [messageAnimation, setMessageAnimation] = useState(false);
   const supabase = createClientComponentClient();
   const [targetChat, setTargetChat] = useState("no-target");
   function selectChat(target) {
@@ -40,14 +41,16 @@ export default function ChatComponent({ followList, messages, userId, previousPr
     });
   }
 
+
+
   
   
   
   return (
-    <div className="chat-container">
+    <div className={messageAnimation ? "chat-container" : "chat-container low-width"}>
       {targetChat == "no-target" ? (
         <div>
-          <div className="flex flex-row chat-container-top">
+          <div className="flex flex-row chat-container-top" onClick={() => setMessageAnimation(prevState => !prevState)}>
             <h1 className="chat-container-h1">Messages</h1>
 
             <Dialog.Root>

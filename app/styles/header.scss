@@ -1,0 +1,51 @@
+@import url(./base.css);
+@import url(./variables.css);
+
+
+.notification-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+   
+}
+
+
+
+.notification-middle{
+    margin: 12px 32px;
+    font-weight: 400;
+    text-align: center;
+}
+
+.wrapper{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+   width: 100%;
+    border-bottom: 1px solid rgba(128, 128, 128, 0.233);
+    
+}
+
+
+.wrapper:last-child{
+    border: none;
+}
+.new-noti{
+    width: 8px;
+    height: 8px;
+    position: absolute;
+    background-color: red;
+    border-radius: 100%;
+    top: 8px;
+    right: 24px;
+    z-index: 99999;
+}
+
+
+.notification-avatar{
+
+    border: 1px solid rgba(128, 128, 128, 0.377);
+    padding: 4px;
+}
+

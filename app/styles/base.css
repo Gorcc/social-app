@@ -61,6 +61,42 @@ a,button{
 }
 
 
+.bg-active{
+    border-bottom: 5px solid var(--primary-green);
+    
+    color: black !important;
+    
+}
+.selected-home-page{
+    padding: 20px;
+    color: grey;
+   
+}
+
+
+.following-click{
+    animation: followingClick 1s ease 0s 1 normal forwards;
+}
+
+.bell-container{
+    position: relative;
+}
+.bell-icon{
+ 
+    width: 20px;
+    height: 20px;
+    background-color: rgba(226, 219, 219, 0.63);
+    border-radius: 50%;
+    padding: 8px;
+    margin: 0 12px;
+    color: black;
+
+    
+
+}
+
+
+
 
 .custom-shape-divider-bottom-1697802524 {
     position: absolute;
@@ -88,4 +124,16 @@ a,button{
     position: fixed;
     top: 20%;
     right: 10%;
+}
+
+@keyframes followingClick {
+	0% {
+		
+		width: 0px;
+	}
+
+	100% {
+		
+		width: 10px;
+	}
 }

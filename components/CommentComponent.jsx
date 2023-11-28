@@ -15,7 +15,7 @@ export default function CommentComponent({
   commentor,
   commentText,
   date,
-  userid,
+  userid
 }) {
   const months = [
     "January",
@@ -60,7 +60,7 @@ export default function CommentComponent({
       } else {
         if (year == currentDate.getFullYear()) {
           var displayDate = day + " " + month + " " + hour + ":" + minute;
-          console.log(year);
+       
         } else {
           var displayDate = day + " " + month + " " + year;
         }

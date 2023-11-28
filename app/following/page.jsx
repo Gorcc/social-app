@@ -30,7 +30,7 @@ export default async function Followings({ targetProfile }) {
       .select()
       .in("id", followerList);
   
-    console.log(followerInfos);
+    (followerInfos);
   
     return (
       <div>

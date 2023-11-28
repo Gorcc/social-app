@@ -37,7 +37,7 @@ export default async function Index() {
       return post;
     }
   });
-  console.log(filteredPosts);
+
 
   return (
     <div>
