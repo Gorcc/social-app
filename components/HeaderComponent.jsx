@@ -31,14 +31,14 @@ export default async function HeaderComponent() {
     .eq("postUser_id", user?.id)
     .neq("commentor_id", user?.id);
 
+  const commentorIds = comment
+    ? comment.map((comment) => comment.commentor_id)
+    : [];
 
-    const commentorIds = comment ? comment.map((comment) => comment.commentor_id) : [];
-    
   const { data: userProfiles } = await supabase
-  .from("user_profiles")
-  .select()
-  .in("id", commentorIds);
-  
+    .from("user_profiles")
+    .select()
+    .in("id", commentorIds);
 
   return (
     <nav className="w-full global-nav flex justify-center border-b border-b-foreground/10 h-16 z-50">
@@ -84,7 +84,7 @@ export default async function HeaderComponent() {
               )}
 
               <BellComponent
-              userObj={userProfiles}
+                userObj={userProfiles}
                 userId={data[0] && data[0].id}
                 post={post}
                 comment={comment.reverse()}

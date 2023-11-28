@@ -6,8 +6,12 @@ import Button from "@mui/material/Button";
 import { faBell } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import NotificationComponent from "./NotificationComponent";
+import Comment from "postcss/lib/comment";
+import { User } from "@supabase/supabase-js";
 
-export default function BellComponent({ userId, comment, userObj }) {
+
+export default function BellComponent({ userId, comment, userObj }: { userId: string; comment: Comment; userObj: User }) {
+  
   const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(
     null
   );
