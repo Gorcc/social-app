@@ -1,3 +1,4 @@
+import ChatServer from "@/components/Chat/ChatServer";
 import Search from "./search";
 import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 import { cookies } from "next/headers";
@@ -17,7 +18,10 @@ export default async function SearchPage({ searchQuery }) {
     .select()
     .or(`unique_name.ilike.%${searchQuery}%,user_name.ilike.%${searchQuery}%`);
 
-    console.log(searchResults);
+    
 
-  return <Search searchResults={searchResults} user={userProfile[0]} searchQuery={searchQuery}></Search>;
+  return <div>
+    <Search searchResults={searchResults} user={userProfile[0]} searchQuery={searchQuery}></Search>
+    <ChatServer></ChatServer>
+  </div>;
 }

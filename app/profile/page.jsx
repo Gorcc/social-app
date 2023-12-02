@@ -1,8 +1,7 @@
 import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 import { cookies } from "next/headers";
 import ProfileComponent from "./profile";
-import FollowButton from "@/components/FollowButton";
-
+import ChatServer from "@/components/Chat/ChatServer";
 export default async function Profile({ targetProfile }) {
   const supabase = createServerComponentClient({ cookies });
 
@@ -35,7 +34,8 @@ export default async function Profile({ targetProfile }) {
         user={userProfile[0]}
         followStatus={followStatus}
       ></ProfileComponent>
-      
+
+      <ChatServer></ChatServer>
     </div>
   );
 

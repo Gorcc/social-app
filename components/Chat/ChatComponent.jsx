@@ -23,7 +23,6 @@ export default function ChatComponent({ followList, messages, userId, previousPr
       "postgres_changes",
       { event: "*", schema: "public", table: "messages" },
       (payload) => {
-        console.log(payload.new);
         setMessageList((oldArray) => [...oldArray, payload.new]);
       }
     )
