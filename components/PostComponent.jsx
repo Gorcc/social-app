@@ -8,14 +8,18 @@ import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
 import { faComment } from "@fortawesome/free-solid-svg-icons";
 import { useState, useEffect } from "react";
-import { TRUE } from "sass";
 import CommentComponent from "@/components/CommentComponent";
 import { Dialog } from "@radix-ui/themes";
 import * as HoverCard from "@radix-ui/react-hover-card";
 
 import Tooltip from "@mui/material/Tooltip";
 
-export default function PostComponent({ postContext, userPosted, user, fullUser }) {
+export default function PostComponent({
+  postContext,
+  userPosted,
+  user,
+  fullUser,
+}) {
   var postText = postContext.post_text;
   var postImage = postContext.post_file;
   var userName = userPosted.user_name;
@@ -27,8 +31,6 @@ export default function PostComponent({ postContext, userPosted, user, fullUser 
   var postUserId = postContext.user_id;
   var commentorImg = fullUser?.avatar_url;
   var commentorName = fullUser?.user_name;
-
-
 
   const [isLiked, setIsLiked] = useState(false);
   const [postLikes, setPostLikes] = useState();
@@ -124,7 +126,7 @@ export default function PostComponent({ postContext, userPosted, user, fullUser 
       .select()
       .eq("post_id", postId)
       .eq("user_id", user);
-   
+
     if (data.length == 0) {
       const { data, error } = await supabase
         .from("likes")
@@ -161,9 +163,9 @@ export default function PostComponent({ postContext, userPosted, user, fullUser 
       commentor_id: user,
       post_id: postId,
       comment_text: commentText,
-      postUser_id:postUserId,
-      commentorImg:commentorImg,
-      commentorName:commentorName
+      postUser_id: postUserId,
+      commentorImg: commentorImg,
+      commentorName: commentorName,
     });
 
     setCommentText("");

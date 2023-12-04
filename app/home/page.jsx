@@ -47,7 +47,7 @@ export default async function Index() {
         user={user}
         userInfo={userInfo[0]}
       ></Home>
-      <ChatServer></ChatServer>
+      <ChatServer chatType={"bottom-right"}></ChatServer>
     </div>
   );
 }

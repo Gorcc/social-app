@@ -22,6 +22,6 @@ export default async function SearchPage({ searchQuery }) {
 
   return <div>
     <Search searchResults={searchResults} user={userProfile[0]} searchQuery={searchQuery}></Search>
-    <ChatServer></ChatServer>
+    <ChatServer chatType={"bottom-right"}></ChatServer>
   </div>;
 }

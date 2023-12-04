@@ -4,7 +4,7 @@ import { cookies } from "next/headers";
 
 
 
-export default async function ChatServer(){
+export default async function ChatServer({chatType}){
 
 
     const supabase = createServerComponentClient({ cookies });
@@ -76,5 +76,5 @@ var previousChats = [];
 
 
 
-    return (<ChatComponent userId={user.id} messages={messageList} previousProfiles={previousProfiles} followList={followerInfos}></ChatComponent>)
+    return (<ChatComponent chatType={chatType} userId={user.id} messages={messageList} previousProfiles={previousProfiles} followList={followerInfos}></ChatComponent>)
 }

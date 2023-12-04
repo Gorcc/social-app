@@ -6,7 +6,13 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import { faShare } from "@fortawesome/free-solid-svg-icons";
 
-export default function ChatBox({ target, targetDefault, messageList,sendMessageServer }) {
+export default function ChatBox({
+  target,
+  targetDefault,
+  messageList,
+  sendMessageServer,
+  chatType
+}) {
   const [messageText, setMessageText] = useState();
   var filteredMessages = messageList.filter(
     (message) =>
@@ -14,47 +20,46 @@ export default function ChatBox({ target, targetDefault, messageList,sendMessage
   );
 
   function sendMessage() {
-   
-    sendMessageServer(messageText, target.id)
+    sendMessageServer(messageText, target.id);
     setMessageText("");
-
   }
   return (
-    <div>
+    <div >
       <div className="flex flex-row chat-top-div">
         <FontAwesomeIcon
-        className="chat-back-icon"
+          className="chat-back-icon"
           onClick={targetDefault}
           icon={faArrowLeft}
           size="xl"
-          
         />
         <div>
           <h1 className="messages-div-h1">{target.user_name}</h1>
           <h2 className="messages-div-h2">{"@" + target.unique_name}</h2>
         </div>
       </div>
-      
-      <div className="messages-text-container">
-      <div className="messages-avatar-div">
-        <Image
-          width={70}
-          height={70}
-          src={process.env.NEXT_PUBLIC_IMG_URL + target.avatar_url}
-          alt="Avatar"
-          className="avatar avatar-link image"
-          style={{ height: 70, width: 70, borderRadius: 50 }}
-        ></Image>
-        <h1 className="messages-div-h1">{target.user_name}</h1>
-        <h2 className="messages-div-h2">{"@" + target.unique_name}</h2>
-        <p className="messages-div-p">{target.user_bio}</p>
-      </div>
+
+      <div className={chatType =="bottom-right" ? "messages-text-container": "messages-page-text-container"}>
+        <div className="messages-avatar-div">
+          <Image
+            width={70}
+            height={70}
+            src={process.env.NEXT_PUBLIC_IMG_URL + target.avatar_url}
+            alt="Avatar"
+            className="avatar avatar-link image"
+            style={{ height: 70, width: 70, borderRadius: 50 }}
+          ></Image>
+          <h1 className="messages-div-h1">{target.user_name}</h1>
+          <h2 className="messages-div-h2">{"@" + target.unique_name}</h2>
+          <p className="messages-div-p">{target.user_bio}</p>
+        </div>
         {filteredMessages.map((message) => (
-          <div className={
-            message.sender_id == target.id
-              ? "message-box-cover message-box-cover-received"
-              : "message-box-cover message-box-cover-sent"
-          }>
+          <div
+            className={
+              message.sender_id == target.id
+                ? "message-box-cover message-box-cover-received"
+                : "message-box-cover message-box-cover-sent"
+            }
+          >
             <div
               className={
                 message.sender_id == target.id

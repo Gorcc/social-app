@@ -1,8 +1,7 @@
 import Link from "next/link";
 import LogoutButton from "../components/LogoutButton";
 import Image from "next/image";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBell } from "@fortawesome/free-solid-svg-icons";
+
 import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 import { cookies } from "next/headers";
 import BellComponent from "./BellComponent";

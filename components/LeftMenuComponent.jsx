@@ -1,19 +1,20 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHouse, faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
-import Link from "next/link";
-import { faUser } from "@fortawesome/free-solid-svg-icons";
-import { faUserPen } from "@fortawesome/free-solid-svg-icons";
-import SearchComponent from "./SearchComponent";
+import { faHouse, faMagnifyingGlass, faUser,faUserPen, faEnvelope } from "@fortawesome/free-solid-svg-icons";
 
+
+import Link from "next/link";
+
+import SearchComponent from "./SearchComponent";
 
 import Image from "next/image";
 
 import "@/app/styles/LeftMenu.scss";
 
 export default function LeftMenu({ currentPage, userProfile }) {
- if(!userProfile){
-  return null;
- } return (
+  if (!userProfile) {
+    return null;
+  }
+  return (
     <div className="left-menu">
       <div>
         <SearchComponent></SearchComponent>
@@ -48,6 +49,23 @@ export default function LeftMenu({ currentPage, userProfile }) {
             <h1>Explore</h1>
           </div>
         </Link>
+
+        <Link href={"/message"}>
+          <div
+            className={
+              currentPage == "messages"
+                ? "left-menu-item flex flex-row left-menu-item-selected"
+                : "left-menu-item flex flex-row"
+            }
+          >
+            <FontAwesomeIcon
+              icon={faEnvelope}
+              style={{ color: "var(--primary-green)" }}
+            />
+            <h1>Messages</h1>
+          </div>
+        </Link>
+
         <Link href={"/profile/" + userProfile.unique_name}>
           <div
             className={

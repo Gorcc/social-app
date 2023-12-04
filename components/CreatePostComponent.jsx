@@ -7,7 +7,6 @@ import { faImage } from "@fortawesome/free-solid-svg-icons";
 import Image from "next/image";
 import { v4 as uuidv4 } from "uuid";
 import "../app/styles/createpost.scss";
-import { userInfo } from "os";
 import Link from "next/link";
 
 export default function CreatePost({ user, userInfo }) {

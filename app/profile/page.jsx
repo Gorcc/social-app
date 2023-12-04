@@ -35,7 +35,7 @@ export default async function Profile({ targetProfile }) {
         followStatus={followStatus}
       ></ProfileComponent>
 
-      <ChatServer></ChatServer>
+      <ChatServer chatType={"bottom-right"}></ChatServer>
     </div>
   );
 
