@@ -23,7 +23,7 @@ export default async function SearchItem({profileContent, user})
 
     return (
         <div className="follower-container flex ">
-          <Link className="follower link-hover" href={"/profile/" + profileContent.unique_name}>
+          <Link className="follower link-hover" href={"/profile/" + profileContent.unique_name} shallow>
             <Image
               width={45}
               height={45}

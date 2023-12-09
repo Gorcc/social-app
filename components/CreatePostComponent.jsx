@@ -91,7 +91,7 @@ export default function CreatePost({ user, userInfo }) {
   return (
     <div className="create-post-container">
      <div className="flex flex-row avatar-and-textarea">
-     <Link  className="link-hover"href={"/profile/" + userInfo.unique_name}><Image
+     <Link  className="link-hover"href={"/profile/" + userInfo.unique_name} shallow><Image
         width={45}
         height={45}
         alt="Avatar"

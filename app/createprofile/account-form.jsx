@@ -253,7 +253,7 @@ export default function AccountForm({ session, cuser }) {
             </button>
           </form>
         </div>
-        <Link className="link-hover" href="/">Return to Home Page</Link>
+        <Link className="link-hover" href="/"  shallow>Return to Home Page</Link>
       </div>
     </div>
   </div>
