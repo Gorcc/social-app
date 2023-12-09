@@ -7,7 +7,7 @@
 }
 .new-message-icon:hover {
   background-color: rgb(212, 210, 210);
-  cursor:pointer
+  cursor: pointer;
 }
 
 .message-page-cover {
@@ -16,27 +16,21 @@
   margin-left: 30rem;
 }
 .chat-page-container {
- display: flex;
-width: 100%;
+  display: flex;
+  width: 100%;
 
- margin-top: 5rem;
- 
- 
-
+  margin-top: 5rem;
 }
 
 .message-page-right {
   width: 50%;
   height: 800px;
   border-right: solid 1px rgb(224, 221, 221);
-
 }
-.message-page-left{
+.message-page-left {
   width: 30%;
   border-right: solid 1px rgb(224, 221, 221);
-  
 }
-
 
 .chat-container {
   position: fixed;
@@ -54,7 +48,6 @@ width: 100%;
   padding: 8px 16px;
   border-bottom: solid 1px rgb(224, 221, 221);
   cursor: pointer;
-
 }
 
 .chat-container-h1 {
@@ -154,12 +147,9 @@ width: 100%;
   outline: none;
 }
 
-
 .previous-chat-container {
- 
   padding: 16px;
   align-items: center;
-
 }
 
 .selected-previous-chat {
@@ -169,28 +159,25 @@ width: 100%;
 .previous-chat-container:hover {
   background-color: rgb(243, 239, 239);
   cursor: pointer;
-
 }
 .previous-chat-text {
   margin-left: 16px;
 }
 
 .previous-chat-h2 {
- color: gray;
+  color: gray;
 }
 
 .chat-top-div {
- padding-bottom: 8px;
+  padding-bottom: 8px;
   padding-top: 8px;
   border-bottom: solid 1px rgb(224, 221, 221);
 }
 
 .chat-back-icon {
-
   color: var(--primary-green);
   padding: 8px;
-   margin: 0 16px;
-
+  margin: 0 16px;
 }
 
 .chat-back-icon:hover {
@@ -200,17 +187,14 @@ width: 100%;
 }
 
 .popup-chat-user-div {
-
-align-items: center;
-margin-bottom: 16px;
-  
+  align-items: center;
+  margin-bottom: 16px;
 }
 
-.popup-chat-user-div:hover{
+.popup-chat-user-div:hover {
   background-color: rgb(240, 239, 239);
   cursor: pointer;
   width: 100%;
-
 }
 .popup-chat-user-div img {
   margin-right: 16px;
@@ -220,11 +204,10 @@ margin-bottom: 16px;
   font-weight: 700;
 }
 
-.low-width{
+.low-width {
   height: 8% !important;
 }
 .no-target-chat-h1 {
-
   font-weight: 700;
   font-size: 32px;
   margin-bottom: 16px;
@@ -233,7 +216,6 @@ margin-bottom: 16px;
 .no-target-chat-p {
   color: gray;
   margin-bottom: 16px;
-
 }
 
 .no-target-chat-button {
@@ -243,7 +225,6 @@ margin-bottom: 16px;
   padding: 16px;
   font-size: 16px;
   font-weight: 700;
-
 }
 
 .no-target-chat-div {

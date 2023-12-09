@@ -154,17 +154,13 @@ export default function AccountForm({ session, cuser }) {
      <LeftMenu userProfile={cuser[0]} currentPage="editprofile"></LeftMenu>
 
 <div className="form-widget">
-  {/* <Alert className="absolute alert" severity="error">
-    <AlertTitle>Error</AlertTitle>
-    This is an error alert — <strong>check it out!</strong>
-  </Alert> */}
   <div className="form-left">
     <div>
       <Avatar
         removeAvatar={removeAvatar}
         uid={user.id}
         url={avatar_url}
-        size={300}
+        size={250}
         onUpload={(url) => {
           setAvatarUrl(url);
           updateProfile({

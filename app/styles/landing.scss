@@ -1,20 +1,14 @@
-
-.landing-page-full{
-    
-}
-
 @media screen and (max-width: 1300px) {
-    .landing-right {
-     display: none;
-    }
-    .landing-wrap{
-        justify-content: center;
-    }
-    .landing-left{
-        margin: 0;
-        
-    }
-    .landing-left p{
-        font-size: 24px;
-    }
+  .landing-right {
+    display: none;
   }
+  .landing-wrap {
+    justify-content: center;
+  }
+  .landing-left {
+    margin: 0;
+  }
+  .landing-left p {
+    font-size: 24px;
+  }
+}
