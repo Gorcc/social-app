@@ -80,13 +80,13 @@ export default function AccountForm({ session, cuser }) {
         location.reload();
       } catch (error) {
         if (
-          error.message ==
-          'new row for relation "user_profiles" violates check constraint "user_profiles_unique_name_check"'
+          error.code == 
+          "23514"
         ) {
           alert("Username must be at least 4 character!");
         } else if (
-          error.message ==
-          'duplicate key value violates unique constraint "user_profiles_unique_name_key"'
+          error.code ==
+          "23505"
         ) {
           alert("Username already exists!");
         } else {
@@ -116,7 +116,20 @@ export default function AccountForm({ session, cuser }) {
 
         alert("Profile updated!");
       } catch (error) {
-        if (status == 409) alert("Error updating the data!");
+        if (
+          error.code == 
+          "23514"
+        ) {
+          alert("Username must be at least 4 character!");
+        } else if (
+          error.code ==
+          "23505"
+        ) {
+          alert("Username already exists!");
+        } else {
+          alert("Error updating the data!");
+          console.log(error);
+        }
         console.log(error);
       } finally {
         setLoading(false);

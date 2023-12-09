@@ -7,17 +7,13 @@ export default async function Profile({ targetProfile }) {
 
   const { data: profile, error } = await supabase
     .from("user_profiles")
-    .select()
+    .select("id,user_name, avatar_url, user_bio, follower_count, followed_count, post_count, unique_name, location, posts(post_id, user_id, created_at, post_text, post_file)")
     .eq("unique_name", targetProfile);
 
   
     if(profile[0]){
-      const { data: posts } = await supabase
-    .from("posts")
-    .select()
-    .eq("user_id", profile[0].id);
    
-
+  
   const {
     data: { user },
   } = await supabase.auth.getUser();
@@ -29,13 +25,13 @@ export default async function Profile({ targetProfile }) {
   return (
     <div>
       <ProfileComponent
-        posts={posts}
+        posts={profile[0].posts}
         profileContent={profile[0]}
         user={userProfile[0]}
         followStatus={followStatus}
       ></ProfileComponent>
 
-      <ChatServer chatType={"bottom-right"}></ChatServer>
+      <ChatServer authUser={user} chatType={"bottom-right"}></ChatServer>
     </div>
   );
 

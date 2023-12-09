@@ -37,12 +37,11 @@ export default async function Index() {
     
       
      
-    if(!data ){
+    if(data?.length == 0){
       redirect("createprofile");
     }
     else {
-      redirect("home");
-    }
+      redirect("home");    }
     
 
   }

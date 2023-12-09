@@ -21,7 +21,7 @@ export default async function Index() {
   return (
     <div className=" message-page-cover flex justify-center align-center items-center">
       <LeftMenu userProfile={userInfo[0]} currentPage="messages"></LeftMenu>
-      <ChatServer chatType={"full-page"}></ChatServer>
+      <ChatServer authUser = {user} chatType={"full-page"}></ChatServer>
     </div>
   );
 }

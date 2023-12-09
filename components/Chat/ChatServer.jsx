@@ -4,19 +4,17 @@ import { cookies } from "next/headers";
 
 
 
-export default async function ChatServer({chatType}){
+export default async function ChatServer({chatType,authUser}){
 
 
     const supabase = createServerComponentClient({ cookies });
 
-    const {
-        data: { user },
-      } = await supabase.auth.getUser();
+    
 
       const { data: followList } = await supabase
       .from("follows")
       .select("followed")
-      .eq("follower", user.id);
+      .eq("follower", authUser.id);
   
       for(let i=0;i<followList.length;i++){
           followList[i]=followList[i].followed;
@@ -33,19 +31,19 @@ export default async function ChatServer({chatType}){
     const { data: messageList } = await supabase
     .from("messages")
     .select()
-  .or("sender_id.eq."+user.id+",receiver_id.eq."+user.id);
+  .or("sender_id.eq."+authUser.id+",receiver_id.eq."+authUser.id);
 
 
 
 var previousChats = [];
     for (let i = 0; i < messageList.length; i++) {
       if (
-        messageList[i].sender_id != user.id &&
+        messageList[i].sender_id != authUser.id &&
         !previousChats.includes(messageList[i].sender_id)
       ) {
         previousChats.push(messageList[i].sender_id);
       } else if (
-        messageList[i].receiver_id != user.id &&
+        messageList[i].receiver_id != authUser.id &&
         !previousChats.includes(messageList[i].receiver_id)
       ) {
         previousChats.push(messageList[i].receiver_id);
@@ -76,5 +74,5 @@ var previousChats = [];
 
 
 
-    return (<ChatComponent chatType={chatType} userId={user.id} messages={messageList} previousProfiles={previousProfiles} followList={followerInfos}></ChatComponent>)
+    return (<ChatComponent chatType={chatType} userId={authUser.id} messages={messageList} previousProfiles={previousProfiles} followList={followerInfos}></ChatComponent>)
 }
