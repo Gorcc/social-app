@@ -56,6 +56,7 @@ export default function PostComponent({
     "December",
   ];
   const date = new Date(postDate);
+  console.log(comments);
 
   const currentDate = new Date();
 
@@ -362,7 +363,7 @@ export default function PostComponent({
               commentText={comment.comment_text}
               date={comment.created_at}
               postUserId={postUserId}
-              commentorProfile={comment.user_profile}
+              commentorProfile={comment.user_profiles}
             ></CommentComponent>
           ))}
         </div>

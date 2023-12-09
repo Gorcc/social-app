@@ -9,7 +9,7 @@ export default function Home({ user, posts, userInfo, filteredPosts }) {
 
   const[selection, setSelection] = useState("explore");
 
-  
+  console.log(posts);
   return (
     <div>
       <LeftMenu userProfile={userInfo} currentPage="home"></LeftMenu>

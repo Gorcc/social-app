@@ -78,6 +78,7 @@ export default function CommentComponent({
      
 
       setUser(commentorProfile);
+      console.log(commentorProfile);
     };
 
     fetchUser();
