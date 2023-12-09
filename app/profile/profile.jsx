@@ -130,6 +130,8 @@ export default async function ProfileComponent({
                 userPosted={profileContent}
                 postContext={post}
                 user={user.id}
+                likes={post.likes}
+                comments={post.post_comments}
               ></PostComponent>
             ))}
           </div>

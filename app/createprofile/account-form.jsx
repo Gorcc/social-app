@@ -91,7 +91,6 @@ export default function AccountForm({ session, cuser }) {
           alert("Username already exists!");
         } else {
           alert("Error updating the data!");
-          console.log(error);
         }
       } finally {
         setLoading(false);
@@ -128,9 +127,8 @@ export default function AccountForm({ session, cuser }) {
           alert("Username already exists!");
         } else {
           alert("Error updating the data!");
-          console.log(error);
+
         }
-        console.log(error);
       } finally {
         setLoading(false);
       }

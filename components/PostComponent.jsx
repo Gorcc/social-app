@@ -19,6 +19,8 @@ export default function PostComponent({
   userPosted,
   user,
   fullUser,
+  comments,
+  likes
 }) {
   var postText = postContext.post_text;
   var postImage = postContext.post_file;
@@ -36,7 +38,7 @@ export default function PostComponent({
   const [postLikes, setPostLikes] = useState();
   const [likeCount, setLikeCount] = useState("0");
   const [commentText, setCommentText] = useState();
-  const [comments, setComments] = useState();
+  const [commentsState, setComments] = useState();
   const [likeAnim, setlikeAnim] = useState("");
   const [showComments, setShowComments] = useState(false);
   const months = [
@@ -88,35 +90,22 @@ export default function PostComponent({
   }
 
   const supabase = createClientComponentClient();
+  
+  
   useEffect(() => {
     const fetchPost = async () => {
-      const { data: postLikes } = await supabase
-        .from("likes")
-        .select()
-        .eq("post_id", postId);
-
-      setPostLikes(postLikes);
-      setLikeCount(postLikes.length);
-
-      const { data: postComments } = await supabase
-        .from("post_comments")
-        .select()
-        .eq("post_id", postId);
-
-      setComments(postComments);
-
-      const { data: thisUserLike } = await supabase
-        .from("likes")
-        .select()
-        .eq("post_id", postId)
-        .eq("user_id", user);
-      if (thisUserLike.length != 0) {
+      setPostLikes(likes);
+      setLikeCount(likes.length);
+     
+      var likeFilter = likes.filter(like => (like.post_id == postId && like.user_id==user));
+      if(likeFilter.length != 0){
         setIsLiked(true);
       }
     };
 
     fetchPost();
   }, []);
+ 
 
   async function handleLike() {
     setlikeAnim("likeAnim");
@@ -373,6 +362,7 @@ export default function PostComponent({
               commentText={comment.comment_text}
               date={comment.created_at}
               postUserId={postUserId}
+              commentorProfile={comment.user_profile}
             ></CommentComponent>
           ))}
         </div>

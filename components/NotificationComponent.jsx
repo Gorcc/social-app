@@ -5,7 +5,7 @@ import Image from "next/image";
 import "@/app/styles/header.scss";
 
 export default function NotificationComponent({ userId, comment, userObj }) {
-  console.log(comment);
+ 
 
   return (
     <div className="notification-container">

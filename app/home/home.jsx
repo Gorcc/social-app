@@ -27,6 +27,8 @@ export default function Home({ user, posts, userInfo, filteredPosts }) {
               postContext={post}
               user={user.id}
               fullUser={userInfo}
+              comments={post.post_comments}
+              likes={post.likes}
             ></PostComponent>
           )):filteredPosts.length == 0? <div className="post-container"><h1>You don't follow anyone, start exploring SocialApp!</h1> </div>:filteredPosts.map((post) => (
             <PostComponent
@@ -34,6 +36,8 @@ export default function Home({ user, posts, userInfo, filteredPosts }) {
               postContext={post}
               user={user.id}
               fullUser={userInfo}
+              comments={post.post_comments}
+              likes={post.likes}
             ></PostComponent>
           ))}
         </div>

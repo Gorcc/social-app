@@ -28,9 +28,10 @@ export default async function Index() {
   const { data: postList } = await supabase
     .from("posts")
     .select(
-      "post_id,user_id,created_at,post_text,post_file, user_profiles(id,user_name,avatar_url,unique_name,follower_count,followed_count,user_bio)"
+      "post_id,user_id,created_at,post_text,post_file, user_profiles(id,user_name,avatar_url,unique_name,follower_count,followed_count,user_bio), post_comments(id,created_at,commentor_id,post_id,comment_text, user_profiles(id,user_name,avatar_url,unique_name,follower_count,followed_count,user_bio)), likes(like_id, post_id, created_at, user_id)"
     )
     .neq("user_id", user.id);
+    
 
   var filteredPosts = postList.filter(function (post) {
     if (followList.includes(post.user_id)) {

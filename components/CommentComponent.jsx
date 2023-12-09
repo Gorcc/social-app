@@ -15,7 +15,8 @@ export default function CommentComponent({
   commentor,
   commentText,
   date,
-  userid
+  userid,
+  commentorProfile
 }) {
   const months = [
     "January",
@@ -74,12 +75,9 @@ export default function CommentComponent({
 
   useEffect(() => {
     const fetchUser = async () => {
-      const { data } = await supabase
-        .from("user_profiles")
-        .select()
-        .eq("id", commentor);
+     
 
-      setUser(data[0]);
+      setUser(commentorProfile);
     };
 
     fetchUser();
