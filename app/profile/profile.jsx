@@ -81,6 +81,7 @@ export default async function ProfileComponent({
                   <Link
                     className="link-hover"
                     href={"/followers/" + profileContent.unique_name}
+                    shallow
                   >
                     <div className="followers-comp">
                       <p>
@@ -93,8 +94,10 @@ export default async function ProfileComponent({
                 </li>
                 <li>
                   <Link
+                   
                     className="link-hover"
                     href={"/following/" + profileContent.unique_name}
+                    shallow
                   >
                     <div className="followers-comp">
                       <p>

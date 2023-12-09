@@ -205,7 +205,7 @@ export default function PostComponent({
         <div className="post-avatar-div flex flex-row">
           <HoverCard.Root>
             <HoverCard.Trigger asChild>
-              <Link href={"/profile/" + uniqueName} className="link-hover">
+              <Link href={"/profile/" + uniqueName} className="link-hover" shallow>
                 <Image
                   width={45}
                   height={45}
@@ -221,7 +221,7 @@ export default function PostComponent({
                 <div
                   style={{ display: "flex", flexDirection: "column", gap: 7 }}
                 >
-                  <Link href={"/profile/" + uniqueName} className="link-hover">
+                  <Link href={"/profile/" + uniqueName} className="link-hover" shallow>
                     <Image
                       className="Image avatar-link large"
                       width={45}
@@ -242,6 +242,7 @@ export default function PostComponent({
                     <Link
                       className="link-hover"
                       href={"/profile/" + uniqueName}
+                      shallow
                     >
                       <div>
                         <div className="Text hover-avatar-text bold">
@@ -275,7 +276,7 @@ export default function PostComponent({
             </HoverCard.Portal>
           </HoverCard.Root>
 
-          <Link className="link-hover" href={"/profile/" + uniqueName}>
+          <Link className="link-hover" href={"/profile/" + uniqueName} shallow>
             <div className="flex comment-name">
               <h1 className="font-bold">{userName}</h1>
               <h1 className="text-gray-400">@{uniqueName}</h1>

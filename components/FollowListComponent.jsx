@@ -9,7 +9,7 @@ export default function FollowListComponent({targetProfile, listType, followerLi
   return (
     <div className="follow-list-div flex flex-col justify-center items-center">
       <h1 className="font-bold following-text">{listType}</h1>
-      <Link className="link-hover" href={"/profile/"+targetProfile}>
+      <Link className="link-hover" href={"/profile/"+targetProfile} shallow>
         <FontAwesomeIcon icon={faArrowLeft} />
       </Link>
 

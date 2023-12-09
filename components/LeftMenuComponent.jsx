@@ -18,13 +18,14 @@ export default function LeftMenu({ currentPage, userProfile }) {
     <div className="left-menu">
       <div>
         <SearchComponent></SearchComponent>
-        <Link href={"/home"}>
+        <Link href={"/home"} shallow>
           <div
             className={
               currentPage == "home"
                 ? "left-menu-item flex flex-row left-menu-item-selected"
                 : "left-menu-item flex flex-row"
             }
+            
           >
             <FontAwesomeIcon
               icon={faHouse}
@@ -34,7 +35,7 @@ export default function LeftMenu({ currentPage, userProfile }) {
           </div>
         </Link>
 
-        <Link href={"/search"}>
+        <Link href={"/search"} shallow>
           <div
             className={
               currentPage == "search"
@@ -66,7 +67,7 @@ export default function LeftMenu({ currentPage, userProfile }) {
           </div>
         </Link>
 
-        <Link href={"/profile/" + userProfile.unique_name}>
+        <Link href={"/profile/" + userProfile.unique_name} shallow>
           <div
             className={
               currentPage == "profile"
@@ -81,7 +82,7 @@ export default function LeftMenu({ currentPage, userProfile }) {
             <h1>Profile</h1>
           </div>
         </Link>
-        <Link href={"/createprofile"}>
+        <Link href={"/createprofile"}  shallow>
           <div
             className={
               currentPage == "editprofile"

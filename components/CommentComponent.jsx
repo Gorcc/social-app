@@ -98,6 +98,7 @@ export default function CommentComponent({
               <Link
                 className="link-hover"
                 href={"/profile/" + user?.unique_name}
+                shallow
               >
                 <div className="post-avatar-div">
                   <Image
@@ -117,7 +118,7 @@ export default function CommentComponent({
                   style={{ display: "flex", flexDirection: "column", gap: 7 }}
                 >
                   <Link className="link-hover"
-                href={"/profile/" + user?.unique_name}>
+                href={"/profile/" + user?.unique_name} shallow>
                     <Image
                       className="Image avatar-link large"
                       width={45}
@@ -137,6 +138,7 @@ export default function CommentComponent({
                     <Link
                       className="link-hover"
                       href={"/profile/" + user?.unique_name}
+                      shallow
                     >
                       <div>
                         <div className="Text hover-avatar-text bold">
@@ -167,7 +169,7 @@ export default function CommentComponent({
           </HoverCard.Root>
 
           <div className="flex flex-col">
-            <Link className="link-hover" href={"/profile/" + user?.unique_name}>
+            <Link className="link-hover" href={"/profile/" + user?.unique_name} shallow>
               <div className="flex comment-name">
                 <h1 className="font-bold">{user?.user_name}</h1>
                 <h1 className="text-gray-400">@{user?.unique_name}</h1>
