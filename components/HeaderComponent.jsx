@@ -65,7 +65,7 @@ export default async function HeaderComponent() {
                     href={
                       data.length != 0 ? "/profile/" + data[0].unique_name : ""
                     }
-                    shallow
+                   
                   >
                     <Image
                       width={45}
