@@ -50,7 +50,7 @@ export default function LeftMenu({ currentPage, userProfile }) {
           </div>
         </Link>
 
-        <Link href={"/message"}>
+        <Link href={"/message"} shallow>
           <div
             className={
               currentPage == "messages"

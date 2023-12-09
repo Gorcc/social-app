@@ -2,8 +2,8 @@ import "./globals.css";
 import "./styles/base.css";
 import HeaderComponent from "@/components/HeaderComponent";
 import FooterComponent from "@/components/FooterComponent";
+
 import "@fortawesome/fontawesome-svg-core/styles.css";
-// Prevent fontawesome from adding its CSS since we did it manually above:
 import { config } from "@fortawesome/fontawesome-svg-core";
 import { Theme } from "@radix-ui/themes";
 import "@radix-ui/themes/styles.css";
@@ -20,20 +20,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    
     <html lang="en">
-      {/* <Theme> */}
       <body>
         <HeaderComponent></HeaderComponent>
-        
+
         <main className="min-h-screen bg-background flex flex-col items-center">
           {children}
         </main>
-        
       </body>
-      {/* </Theme> */}
     </html>
-    
   );
 }
 export const dynamic = "force-dynamic";

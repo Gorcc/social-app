@@ -7,7 +7,7 @@ import Image from 'next/image'
 import { redirect } from 'next/navigation';
 import CreatePost from "@/components/CreatePostComponent"; 
 import HeaderComponent from '@/components/HeaderComponent'
-import svgImage from "@/app/styles/undraw_mobile_content_xvgr.svg"
+import svgImage from "@/app/styles/mainimg.svg";
 
 export const dynamic = 'force-dynamic'
 import "@/app/styles/landing.scss"
@@ -64,7 +64,7 @@ export default async function Index() {
 
          
           {!user? <div className="bg-foreground py-3 px-6 rounded-lg font-mono text-sm text-background">
-          <Link className="link-hover green-btn p-4" href="/login">Get started</Link>
+          <Link className="link-hover green-btn p-5 font-bold" href="/login">Get started</Link>
              
           </div>: null}
           

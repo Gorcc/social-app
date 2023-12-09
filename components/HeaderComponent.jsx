@@ -60,7 +60,7 @@ export default async function HeaderComponent() {
                     </span>
                     !
                   </h1>{" "}
-                  <Link
+                  <Link shallow
                     className="link-hover"
                     href={
                       data.length != 0 ? "/profile/" + data[0].unique_name : ""
