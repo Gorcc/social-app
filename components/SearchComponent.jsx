@@ -11,7 +11,7 @@ export default function SearchComponent() {
   }
 
   return (
-    <div>
+    <div className="w-full text-center">
       <form action={"/search/" + search} onSubmit={() => goSearch(search)}>
         <input
           className="search-input"

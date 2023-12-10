@@ -64,12 +64,7 @@ hr{
     
 }
 
-@media only screen and (max-width: 1125px) {
-    .post-container{
-        width: 80%;
-        
-    }
-  }
+
 
   .comments-hidden {
     display: none;
@@ -103,6 +98,9 @@ hr{
 a {
   all: unset;
 }
+
+
+
 
 .HoverCardContent {
   border-radius: 6px;
@@ -219,4 +217,22 @@ a {
 .hover-card-bio {
   
   word-wrap: break-word;
+}
+
+@media only screen and (max-width: 768px)
+
+{
+  .posts-container {
+  width: 100%;
+  }
+  .post-container {
+    width: 100%;
+  }
+
+  .send-btn h1 {
+    display: none;
+  }
+  .comment-input {
+    width: 85%!important;
+  }
 }

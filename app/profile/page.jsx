@@ -33,7 +33,7 @@ export default async function Profile({ targetProfile }) {
     <div>
       <ProfileComponent
         posts={postList}
-        profileContent={postList[0].user_profiles}
+        profileContent={profile[0]}
         user={userProfile[0]}
         followStatus={followStatus}
       ></ProfileComponent>

@@ -116,8 +116,8 @@ export default function CreatePost({ user, userInfo }) {
             "Uploading ..."
           ) : (
            <>
-            {/* {fileUrl? <>{imageName} <br /></>:
-            ""} */}
+            {fileUrl? <>{imageName} <br /></>:
+            ""}
             
             <FontAwesomeIcon
               className="info-icon font-bold py-2"

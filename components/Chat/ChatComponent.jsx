@@ -5,7 +5,7 @@ import "../../app/styles/chat.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSquarePlus } from "@fortawesome/free-solid-svg-icons";
 import Image from "next/image";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import ChatBox from "@/components/Chat/ChatBox";
 
 export default function ChatComponent({
@@ -19,9 +19,15 @@ export default function ChatComponent({
   const [messageAnimation, setMessageAnimation] = useState(false);
   const supabase = createClientComponentClient();
   const [targetChat, setTargetChat] = useState("no-target");
+  
+
+
+
+
   function selectChat(target) {
     setTargetChat(target);
   }
+
 
   const messageChannel = supabase
     .channel("room1")
@@ -45,6 +51,9 @@ export default function ChatComponent({
       message_text: message,
     });
   }
+
+  
+  
 
   if (chatType == "bottom-right") {
     return (

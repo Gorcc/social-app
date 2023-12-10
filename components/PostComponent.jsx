@@ -56,7 +56,6 @@ export default function PostComponent({
     "December",
   ];
   const date = new Date(postDate);
-  console.log(comments);
 
   const currentDate = new Date();
 
@@ -382,7 +381,7 @@ export default function PostComponent({
           onClick={sendComment}
           type="submit"
         >
-          <FontAwesomeIcon icon={faComment} /> Comment
+          <FontAwesomeIcon icon={faComment} /> <h1>Comment</h1>
         </button>
       </div>
     </div>

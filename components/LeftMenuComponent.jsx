@@ -4,7 +4,6 @@ import { faHouse, faMagnifyingGlass, faUser,faUserPen, faEnvelope } from "@forta
 
 import Link from "next/link";
 
-import SearchComponent from "./SearchComponent";
 
 import Image from "next/image";
 
@@ -17,15 +16,13 @@ export default function LeftMenu({ currentPage, userProfile }) {
   return (
     <div className="left-menu">
       <div>
-        <SearchComponent></SearchComponent>
-        <Link href={"/home"} shallow>
+        <Link href={"/home"}>
           <div
             className={
               currentPage == "home"
                 ? "left-menu-item flex flex-row left-menu-item-selected"
                 : "left-menu-item flex flex-row"
             }
-            
           >
             <FontAwesomeIcon
               icon={faHouse}
@@ -35,7 +32,7 @@ export default function LeftMenu({ currentPage, userProfile }) {
           </div>
         </Link>
 
-        <Link href={"/search"} shallow>
+        <Link href={"/search"}>
           <div
             className={
               currentPage == "search"
@@ -47,11 +44,11 @@ export default function LeftMenu({ currentPage, userProfile }) {
               icon={faMagnifyingGlass}
               style={{ color: "var(--primary-green)" }}
             />
-            <h1>Explore</h1>
+            <h1>Search</h1>
           </div>
         </Link>
 
-        <Link href={"/message"} shallow>
+        <Link href={"/message"}>
           <div
             className={
               currentPage == "messages"
@@ -67,7 +64,7 @@ export default function LeftMenu({ currentPage, userProfile }) {
           </div>
         </Link>
 
-        <Link href={"/profile/" + userProfile.unique_name} shallow>
+        <Link href={"/profile/" + userProfile.unique_name}>
           <div
             className={
               currentPage == "profile"
@@ -82,7 +79,7 @@ export default function LeftMenu({ currentPage, userProfile }) {
             <h1>Profile</h1>
           </div>
         </Link>
-        <Link href={"/createprofile"}  shallow>
+        <Link href={"/createprofile"}>
           <div
             className={
               currentPage == "editprofile"

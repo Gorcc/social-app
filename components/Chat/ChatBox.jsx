@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useState,useEffect,useRef } from "react";
 
 import Image from "next/image";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -13,6 +13,9 @@ export default function ChatBox({
   sendMessageServer,
   chatType
 }) {
+
+
+
   const [messageText, setMessageText] = useState();
   var filteredMessages = messageList.filter(
     (message) =>
@@ -22,7 +25,16 @@ export default function ChatBox({
   function sendMessage() {
     sendMessageServer(messageText, target.id);
     setMessageText("");
+    event.preventDefault();
   }
+
+
+
+  const messagesEndRef = useRef(null);
+  const scrollToBottom = () => {
+    messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
+  };
+  useEffect(scrollToBottom, [messageList]);
   return (
     <div >
       <div className="flex flex-row chat-top-div">
@@ -38,7 +50,7 @@ export default function ChatBox({
         </div>
       </div>
 
-      <div className={chatType =="bottom-right" ? "messages-text-container": "messages-page-text-container"}>
+      <div id="text-container" className={chatType =="bottom-right" ? "messages-text-container": "messages-page-text-container"}>
         <div className="messages-avatar-div">
           <Image
             width={70}
@@ -69,10 +81,15 @@ export default function ChatBox({
             >
               <h1>{message.message_text}</h1>
             </div>
+            <div ref={messagesEndRef}></div>
           </div>
         ))}{" "}
       </div>
-      <div className="send-message-div">
+      <div>
+        <form className="send-message-div" disabled={!messageText} onSubmit={() => {
+          sendMessage();
+          event.preventDefault();
+        } } >
         <input
           type="text"
           value={messageText}
@@ -91,6 +108,7 @@ export default function ChatBox({
             style={{ color: "var(--primary-green)" }}
           />
         </button>
+        </form>
       </div>
     </div>
   );

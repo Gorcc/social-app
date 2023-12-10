@@ -4,14 +4,15 @@ import CreatePostComponent from "@/components/CreatePostComponent";
 import PostComponent from "@/components/PostComponent";
 import LeftMenu from "@/components/LeftMenuComponent";
 import { useState } from "react";
+import "../styles/home.scss";
+
 
 export default function Home({ user, posts, userInfo, filteredPosts }) {
 
   const[selection, setSelection] = useState("explore");
 
-  console.log(posts);
   return (
-    <div>
+    <div className="home-page-container">
       <LeftMenu userProfile={userInfo} currentPage="home"></LeftMenu>
       <div className="posts-container flex flex-col items-center justify-center mt-8">
         <div>

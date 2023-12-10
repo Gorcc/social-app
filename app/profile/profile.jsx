@@ -19,18 +19,18 @@ export default async function ProfileComponent({
   const showPost = profileContent.id == user.id;
 
   return (
-    <div>
+    <div className="flex align-center justify-center">
       <LeftMenu userProfile={user} currentPage="profile"></LeftMenu>
 
       <div className="profile-container flex flex-col items-center mt-12">
         <div className="profile-header w-full">
-          <div className="flex flex-row mb-4">
+          <div className="avatar-and-name-div">
             <Image
               src={
                 "https://hdjhrldjrgswbwvseahy.supabase.co/storage/v1/object/public/avatarimages/" +
                 profileContent.avatar_url
               }
-              className="profile-img mr-8 mt-4"
+              className="profile-img"
               style={{ height: 150, width: 150 }}
               width={200}
               height={200}
@@ -127,7 +127,7 @@ export default async function ProfileComponent({
             <CreatePostComponent userInfo={profileContent} user={user} />
           )}
 
-          <div className="profile-posts  w-full flex flex-col items-center">
+          <div className="profile-posts flex flex-col items-center">
             {posts.reverse().map((post) => (
               <PostComponent
                 userPosted={profileContent}
