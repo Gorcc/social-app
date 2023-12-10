@@ -4,6 +4,7 @@
   color: var(--primary-green);
   padding: 12px;
   border-radius: 100%;
+ 
 }
 .new-message-icon:hover {
   background-color: rgb(212, 210, 210);
@@ -95,7 +96,7 @@
 .message-box {
   padding: 16px;
   max-width: 80%;
-  width: min-content;
+  width: max-content;
   word-wrap: break-word;
   border-radius: 16px;
   margin: 16px;
@@ -206,6 +207,9 @@
 
 .low-width {
   height: 8% !important;
+
+
+ 
 }
 .no-target-chat-h1 {
   font-weight: 700;
@@ -234,7 +238,7 @@
   align-items: center;
 }
 
-@media only screen and (max-width: 768px)
+@media only screen and (max-width: 1212px)
 
 {
   .chat-container {

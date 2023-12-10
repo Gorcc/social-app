@@ -160,7 +160,7 @@ export default function AccountForm({ session, cuser }) {
         removeAvatar={removeAvatar}
         uid={user.id}
         url={avatar_url}
-        size={250}
+        size={200}
         onUpload={(url) => {
           setAvatarUrl(url);
           updateProfile({
@@ -174,6 +174,7 @@ export default function AccountForm({ session, cuser }) {
       />
     </div>
   </div>
+  <div className="form-wrapper">
   <div className="form-right">
     <div className="form-right-content">
       <div className="form-elements">
@@ -205,7 +206,10 @@ export default function AccountForm({ session, cuser }) {
           />
         </div>
 
-        <div className="form-element">
+        
+      </div>
+      <div className="profile-elements">
+      <div className="form-element">
           <label htmlFor="bio">Bio</label>
           <input
             id="bio"
@@ -214,10 +218,8 @@ export default function AccountForm({ session, cuser }) {
             onChange={(e) => setBio(e.target.value)}
           />
         </div>
-      </div>
-      <div className="profile-elements">
         <div className="form-element">
-          <label htmlFor="bio">Location</label>
+          <label htmlFor="location">Location</label>
           <input
             id="location"
             type="text"
@@ -227,7 +229,7 @@ export default function AccountForm({ session, cuser }) {
         </div>
         <div className="form-buttons">
           <button
-            className="button primary block green-btn"
+            className=""
             onClick={() =>
               updateProfile({
                 fullname,
@@ -237,22 +239,18 @@ export default function AccountForm({ session, cuser }) {
                 userLocation,
               })
             }
-            disabled={
-              loading || fullname.length == 0 || uniquename.length == 0
-            }
+            disabled={loading || fullname.length === 0 || uniquename.length === 0}
           >
             {loading ? "Loading ..." : "Update"}
           </button>
-          <form action="/auth/signout" method="post">
-            <button className="button block green-btn" type="submit">
-              Sign out
-            </button>
-          </form>
         </div>
-        <Link className="link-hover" href="/"  shallow>Return to Home Page</Link>
+        <Link className="return-btn " href="/" shallow>
+          Return to Home Page
+        </Link>
       </div>
     </div>
   </div>
+</div>
 </div>
    </div>
   );

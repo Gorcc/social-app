@@ -49,3 +49,29 @@
     padding: 4px;
 }
 
+@media screen and (max-width: 911px) {
+    .header-nav{
+        padding: 16px 40px !important;
+    }
+
+
+    .link-hover{
+        font-size: 12px;
+    }
+    .header-component {
+
+
+        .header-name{
+            display: none;
+        }
+
+        .header-element{
+            padding: 0;
+            margin: 4px;
+            width: 100%;
+            font-size: 12px;
+            
+        }
+      
+    }
+  }

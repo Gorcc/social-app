@@ -71,7 +71,7 @@ export default function ChatComponent({
               <h1 className="chat-container-h1">Messages</h1>
 
               <Dialog.Root>
-                <Dialog.Trigger>
+                <Dialog.Trigger onClick={(e) => { e.stopPropagation(); }}>
                   <FontAwesomeIcon
                     className="new-message-icon"
                     icon={faSquarePlus}
@@ -82,7 +82,11 @@ export default function ChatComponent({
                 <Dialog.Content style={{ maxWidth: 450 }}>
                   <Dialog.Title>New Message</Dialog.Title>
                   {followList.map((user) => (
-                    <Dialog.Description onClick={() => selectChat(user)}>
+                    <Dialog.Description onClick={(e) => {
+                      e.stopPropagation();  
+                      selectChat(user);
+                      setMessageAnimation(true);
+                    }}>
                       <div className="flex flex-row popup-chat-user-div">
                         <Image
                           width={55}

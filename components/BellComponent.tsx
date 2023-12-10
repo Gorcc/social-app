@@ -30,7 +30,7 @@ export default function BellComponent({ userId, comment, userObj }: { userId: st
 
   return (
     <div className="bell-container">
-      <div className={notification ? "new-noti" : ""}></div>
+      <div className={notification ? "" : ""}></div>
       <Button
         className="bell-btn"
         aria-describedby={id}

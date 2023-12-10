@@ -37,11 +37,10 @@
   
 }
 .follow-btn button{
-  
+  transition: 0.3s all ease;
   font-size: 16px;
   font-weight: 700;
   border: 3px solid var(--primary-green);
-  color: var(--primary-green) ;
   padding: 8px;
   z-index: 1;
   width: 100px;
@@ -52,10 +51,25 @@
   
 }
 
-.follow-btn button:hover {
+.followed{
+  background-color: white;
+  color: var(--primary-green);
+}
+.followed:hover{
   background-color: var(--primary-green);
   color: white;
 }
+.not-followed{
+  background-color: var(--primary-green);
+  color: white;
+}
+.not-followed:hover{
+  background-color: white;
+  color: var(--primary-green);
+
+}
+
+
 
 .name-bio {
   display: flex;

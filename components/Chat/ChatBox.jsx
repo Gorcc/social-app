@@ -32,7 +32,9 @@ export default function ChatBox({
 
   const messagesEndRef = useRef(null);
   const scrollToBottom = () => {
-    messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
+    if (messagesEndRef.current) {
+      messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
+    }
   };
   useEffect(scrollToBottom, [messageList]);
   return (

@@ -40,7 +40,7 @@ export default async function HeaderComponent() {
     .in("id", commentorIds);
 
   return (
-    <nav className="w-full global-nav flex justify-center border-b border-b-foreground/10 h-16 z-50">
+    <nav className="header-component w-full global-nav flex justify-center border-b border-b-foreground/10 h-16 z-50">
       <div className="header-nav w-full max-w-4xl flex justify-between items-center p-3 text-sm text-foreground z-50 ">
         <Link className="link-hover" href="/" shallow>
           <strong style={{ color: "var(--primary-green)" }}>
@@ -52,7 +52,7 @@ export default async function HeaderComponent() {
           {user ? (
             <div className="header-gap flex items-center gap-4">
               {data.length != 0 && (
-                <div className="flex flex-row items-center">
+                <div className="header-name flex flex-row items-center">
                   <h1>
                     Hey,{" "}
                     <span className="font-bold">
@@ -91,7 +91,7 @@ export default async function HeaderComponent() {
               />
               <Link
                 href="/createprofile"
-                className="py-2 px-4 rounded-md no-underline bg-btn-background hover:bg-btn-background-hover link-hover"
+                className="header-element py-2 px-4 rounded-md no-underline bg-btn-background hover:bg-btn-background-hover link-hover"
                 shallow
               >
                 Edit Profile
@@ -101,7 +101,7 @@ export default async function HeaderComponent() {
           ) : (
             <Link
               href="/login"
-              className="py-2 px-4 rounded-md no-underline bg-btn-background hover:bg-btn-background-hover link-hover"
+              className="header-element py-2 px-4 rounded-md no-underline bg-btn-background hover:bg-btn-background-hover link-hover"
             >
               Login
             </Link>
