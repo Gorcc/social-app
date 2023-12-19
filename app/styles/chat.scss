@@ -247,3 +247,30 @@
 
 
 }
+
+@media screen and (max-width: 1125px) {
+ .message-page-passive {
+  display: none;
+ }
+
+ .message-page-cover {
+  margin: 0!important;
+  width: 90%;
+ }
+ .message-page-left{
+  width: 100%;
+  border-left: solid 1px rgb(224, 221, 221);
+ }
+
+ .message-page-right{
+  width: 100%;
+  height: auto;
+  border-left: solid 1px rgb(224, 221, 221);
+
+ }
+ .messages-page-text-container {
+  padding-bottom: 3.5rem;
+ }
+}
+
+

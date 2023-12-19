@@ -20,7 +20,7 @@ export default async function SearchPage({ searchQuery }) {
 
     
 
-  return <div>
+  return <div className="w-full">
     <Search searchResults={searchResults} user={userProfile[0]} searchQuery={searchQuery}></Search>
     <ChatServer authUser={user} chatType={"bottom-right"}></ChatServer>
   </div>;

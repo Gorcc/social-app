@@ -1,77 +1,71 @@
 @import url(./base.css);
 @import url(./variables.css);
 
-
-.notification-container{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-   
+.notification-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
-
-
-.notification-middle{
-    margin: 12px 32px;
-    font-weight: 400;
-    text-align: center;
+.notification-middle {
+  margin: 12px 32px;
+  font-weight: 400;
+  text-align: center;
 }
 
-.wrapper{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-   width: 100%;
-    border-bottom: 1px solid rgba(128, 128, 128, 0.233);
-    
+.wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  border-bottom: 1px solid rgba(128, 128, 128, 0.233);
 }
 
-
-.wrapper:last-child{
-    border: none;
+.wrapper:last-child {
+  border: none;
 }
-.new-noti{
-    width: 8px;
-    height: 8px;
-    position: absolute;
-    background-color: red;
-    border-radius: 100%;
-    top: 8px;
-    right: 24px;
-    z-index: 99999;
+.new-noti {
+  width: 8px;
+  height: 8px;
+  position: absolute;
+  background-color: red;
+  border-radius: 100%;
+  top: 8px;
+  right: 24px;
+  z-index: 99999;
 }
 
-
-.notification-avatar{
-
-    border: 1px solid rgba(128, 128, 128, 0.377);
-    padding: 4px;
+.notification-avatar {
+  border: 1px solid rgba(128, 128, 128, 0.377);
+  padding: 4px;
 }
 
 @media screen and (max-width: 911px) {
-    .header-nav{
-        padding: 16px 40px !important;
-    }
+  nav {
+    z-index: 2!important;
+  }
 
-
-    .link-hover{
-        font-size: 12px;
-    }
-    .header-component {
-
-
-        .header-name{
-            display: none;
-        }
-
-        .header-element{
-            padding: 0;
-            margin: 4px;
-            width: 100%;
-            font-size: 12px;
-            
-        }
-      
+  .header-nav {
+    padding: 16px 40px !important;
+    a {
+      display: none;
     }
   }
+
+  .link-hover {
+    font-size: 12px;
+  }
+  .header-component {
+    .header-name {
+      display: none;
+    }
+
+    .header-element {
+      padding: 0;
+      margin: 4px;
+      width: 100%;
+      font-size: 12px;
+    }
+  }
+}

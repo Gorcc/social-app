@@ -8,7 +8,7 @@ import "../styles/search.scss";
 
 export default async function Search({ searchResults, user, searchQuery }) {
   return (
-    <div>
+    <div className="w-full flex justify-center">
       <LeftMenu currentPage={"search"} userProfile={user}></LeftMenu>
       <div className="follow-list-div flex flex-col justify-center items-center">
         <SearchComponent></SearchComponent>

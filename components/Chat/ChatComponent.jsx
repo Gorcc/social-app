@@ -147,10 +147,14 @@ export default function ChatComponent({
         )}
       </div>
     );
-  } else if (chatType == "full-page") {
+  }
+  
+  
+  
+  else if (chatType == "full-page") {
     return (
       <div className="chat-page-container">
-        <div className="message-page-left">
+        <div className={targetChat!="no-target"?"message-page-left message-page-passive":"message-page-left"}>
           <div className="flex flex-row chat-container-top">
             <h1 className="chat-container-h1">Messages</h1>
 
@@ -214,7 +218,7 @@ export default function ChatComponent({
             </div>
           ))}
         </div>
-        <div className={targetChat =="no-target" ? "message-page-right relative flex items-center justify-center":"message-page-right relative"}>
+        <div className={targetChat =="no-target" ? "message-page-right relative flex items-center justify-center message-page-passive":"message-page-right relative"}>
           {targetChat != "no-target" ? (
             <ChatBox
               target={targetChat}
