@@ -9,7 +9,7 @@ SocialApp is a full-stack social media website with features like registering, e
 
 Developers: [Mehmet Eren Kılıç](https://github.com/eren5515) [Deniz Görkem Ater](https://github.com/Gorcc)
 
-Built with: 
+Tech stack: 
  -  React.JS / Next.JS
  -  Supabase / PostegreSQL
  -  Saas / Scss / Tailwind
